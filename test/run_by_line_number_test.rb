@@ -25,4 +25,13 @@ class RunByLineNumberTest < MTest
     output = m('test/example_test.rb:14')
     assert_output /1 tests, 3 assertions/, output
   end
+
+  def test_run_on_blank_line
+    output = m('test/example_test.rb:2')
+
+    assert !$?.success?
+    assert_match /No tests found on line 2. Valid tests to run:/, output
+    assert_match %r{ test_apple: m test/example_test\.rb:7}, output
+    assert_match %r{test_banana: m test/example_test\.rb:11}, output
+  end
 end

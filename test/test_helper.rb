@@ -2,7 +2,7 @@ require 'test/unit'
 
 class MTest < Test::Unit::TestCase
   def m(arguments)
-    `ruby -Ilib ./bin/m #{arguments}`.strip
+    `ruby -Ilib ./bin/m #{arguments} 2>&1`.strip
   end
 
   def assert_output(regexp, output)
