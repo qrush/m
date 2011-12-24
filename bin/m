@@ -1,19 +1,21 @@
 #!/usr/bin/env ruby
 
-require 'ruby_parser'
-require 'pp'
-
-file, line = ARGV.first.split(':')
-
-if line
-  parser = RubyParser.new
-  r = parser.parse(File.read(file))
-  r.each_of_type(:defn) do |s|
-    if s.line == line.to_i
-      method_name = s.sexp_body.first
-      exec "ruby -Itest #{file} -n '/#{method_name}/'"
-    end
-  end
-else
-  exec "ruby -Itest #{file}"
-end
+require 'm'
+M.run(ARGV)
+#require 'ruby_parser'
+#require 'pp'
+#
+#file, line = ARGV.first.split(':')
+#
+#if line
+#  parser = RubyParser.new
+#  r = parser.parse(File.read(file))
+#  r.each_of_type(:defn) do |s|
+#    if s.line == line.to_i
+#      method_name = s.sexp_body.first
+#      exec "ruby -Itest #{file} -n '/#{method_name}/'"
+#    end
+#  end
+#else
+#  exec "ruby -Itest #{file}"
+#end

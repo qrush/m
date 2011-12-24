@@ -1,9 +1,6 @@
-require 'test/unit'
+require 'test_helper'
 
 class ExampleTest < Test::Unit::TestCase
-  def setup
-  end
-
   def test_apple
     assert_equal 1, 1
   end
@@ -12,14 +9,3 @@ class ExampleTest < Test::Unit::TestCase
     assert_equal 1, 1
   end
 end
-
-#class Wtf
-#  def zomg
-#
-#  end
-#
-#  def lol(*args)
-#
-#  end
-#
-#end
