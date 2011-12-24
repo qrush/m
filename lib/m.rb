@@ -1,25 +1,26 @@
 require "ruby_parser"
+require 'pp'
 
 require "m/version"
 
 module M
   class Runner
     def initialize(argv)
-      @file, @line = argv.first.split(':')
+      @file, line = argv.first.split(':')
+      @line = line.to_i
     end
 
     def run
-      if @line
+      if @line.zero?
+        run_tests
+      else
         parser = RubyParser.new
         sexps = parser.parse(File.read(@file))
         sexps.each_of_type(:defn) do |sexp|
-          if sexp.line == @line.to_i
-            method_name = sexp.sexp_body.first
-            run_tests method_name
+          if @line >= sexp.line && @line <= sexp.scope.line
+            run_tests sexp.sexp_body.first
           end
         end
-      else
-        run_tests
       end
     end
 
