@@ -1,5 +1,4 @@
 require "ruby_parser"
-require 'pp'
 
 require "m/version"
 
