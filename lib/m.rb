@@ -13,16 +13,16 @@ module M
       if @line.zero?
         run_tests
       else
-        tests.each do |method_name, sexp|
-          if @line >= sexp.line && @line <= sexp.scope.line
-            run_tests sexp.sexp_body.first
+        tests.each do |method_name, (start_line, end_line)|
+          if @line >= start_line && @line <= end_line
+            run_tests method_name
           end
         end
 
         message = "No tests found on line #{@line}. Valid tests to run:\n\n"
         column_size = tests.keys.map { |method_name| method_name.to_s.size }.max
-        tests.each do |method_name, sexp|
-          message << "#{sprintf("%0#{column_size}s", method_name)}: m #{@file}:#{sexp.line}\n"
+        tests.each do |method_name, (start_line, end_line)|
+          message << "#{sprintf("%0#{column_size}s", method_name)}: m #{@file}:#{start_line}\n"
         end
         abort message
       end
@@ -35,10 +35,23 @@ module M
         tests = {}
         parser = RubyParser.new
         sexps = parser.parse(File.read(@file))
+
+        sexps.each_of_type(:iter) do |sexp|
+          test_sexp = sexp.sexp_body.first
+          if test_sexp[2] == :test
+            method_name = "test_#{test_sexp.find_node(:arglist).find_node(:str).sexp_body.first}"
+            lines = []
+            sexp.each_of_type(:call) do |call|
+              lines << call.line
+            end
+            tests[method_name] = [sexp.line, lines.max]
+          end
+        end
+
         sexps.each_of_type(:defn) do |sexp|
           method_name = sexp.sexp_body.first
           if method_name =~ /^test/
-            tests[method_name] = sexp
+            tests[method_name] = [sexp.line, sexp.scope.line]
           end
         end
         tests

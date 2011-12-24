@@ -1,4 +1,5 @@
 require 'test/unit'
+require 'active_support/test_case'
 
 class MTest < Test::Unit::TestCase
   def m(arguments)

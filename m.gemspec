@@ -12,6 +12,7 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency "ruby_parser", "~> 2.3.1"
   gem.add_development_dependency "rake"
+  gem.add_development_dependency "activesupport"
 
   gem.summary = description = %q{Run test/unit tests by line number. Metal!}
 end
