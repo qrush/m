@@ -1,8 +1,6 @@
 Gem::Specification.new do |gem|
   gem.authors       = ["Nick Quaranto"]
   gem.email         = ["nick@quaran.to"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
   gem.homepage      = ""
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
@@ -14,4 +12,6 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency "ruby_parser", "~> 2.3.1"
   gem.add_development_dependency "rake"
+
+  gem.summary = description = %q{Run test/unit tests by line number. Metal!}
 end
