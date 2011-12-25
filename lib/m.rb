@@ -39,7 +39,7 @@ module M
         sexps.each_of_type(:iter) do |sexp|
           test_sexp = sexp.sexp_body.first
           if test_sexp[2] == :test
-            method_name = "test_#{test_sexp.find_node(:arglist).find_node(:str).sexp_body.first}"
+            method_name = "test_#{test_sexp.find_node(:arglist).find_node(:str).sexp_body.first}".gsub(" ", "_")
             lines = []
             sexp.each_of_type(:call) do |call|
               lines << call.line

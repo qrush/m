@@ -8,7 +8,7 @@ class RunActiveSupportTest < MTest
 
   def test_runs_entire_test_without_line_number
     output = m('test/active_support_test.rb')
-    assert_output /2 tests/, output
+    assert_output /3 tests/, output
   end
 
   def test_run_inside_of_test
@@ -33,5 +33,10 @@ class RunActiveSupportTest < MTest
     assert_match /No tests found on line 2. Valid tests to run:/, output
     assert_match %r{test_carrot: m test/active_support_test\.rb:7}, output
     assert_match %r{test_daikon: m test/active_support_test\.rb:11}, output
+  end
+
+  def test_run_on_test_with_spaces
+    output = m('test/active_support_test.rb:18')
+    assert_output /1 tests, 1 assertions/, output
   end
 end
