@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ExampleTest < Test::Unit::TestCase
+class TestUnitExampleTest < Test::Unit::TestCase
   def setup
   end
 
