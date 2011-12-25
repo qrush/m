@@ -4,6 +4,10 @@ class ActiveSupportTestCase < ActiveSupport::TestCase
   setup do
   end
 
+  def test_normal
+    assert_equal 1, 1
+  end
+
   test "carrot" do
     assert_equal 1, 1
   end

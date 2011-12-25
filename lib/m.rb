@@ -21,7 +21,7 @@ module M
 
         message = "No tests found on line #{@line}. Valid tests to run:\n\n"
         column_size = tests.keys.map { |method_name| method_name.to_s.size }.max
-        tests.each do |method_name, (start_line, end_line)|
+        tests.sort_by { |test| test.last.first }.each do |method_name, (start_line, end_line)|
           message << "#{sprintf("%0#{column_size}s", method_name)}: m #{@file}:#{start_line}\n"
         end
         abort message
