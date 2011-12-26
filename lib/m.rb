@@ -19,7 +19,8 @@ module M
       tests_to_run = tests.within(@line)
 
       if tests_to_run.size > 0
-        run_tests(tests_to_run)
+        test_names = tests_to_run.map(&:name).join('|')
+        exit ::Test::Unit::AutoRunner.run(false, nil, ["-n", "/(#{test_names})/"])
       else
         message = "No tests found on line #{@line}. Valid tests to run:\n\n"
         tests.by_line_number do |test|
@@ -31,14 +32,17 @@ module M
 
     private
 
+    def suites
+      $:.unshift "./test"
+      load @file
+      ::Test::Unit::TestCase.test_suites.inject({}) do |suites, suite_class|
+        suites[suite_class] = suite_class.test_methods unless suite_class.test_methods.empty?
+        suites
+      end
+    end
+
     def tests
       @tests ||= begin
-        $:.unshift "./test"
-        load @file
-        suites = ::Test::Unit::TestCase.test_suites.inject({}) do |suites, suite_class|
-          suites[suite_class] = suite_class.test_methods unless suite_class.test_methods.empty?
-          suites
-        end
         collection = M::TestCollection.new
         suites.each do |suite_class, test_methods|
           suite = suite_class.new(//)
@@ -48,11 +52,6 @@ module M
         end
         collection
       end
-    end
-
-    def run_tests(collection)
-      test_names = collection.map(&:name).join('|')
-      exit ::Test::Unit::AutoRunner.run(false, nil, ["-n", "/(#{test_names})/"])
     end
   end
 
