@@ -4,6 +4,7 @@ require "ruby_parser"
 require "sourcify"
 
 require "m/test"
+require "m/test_collection"
 require "m/version"
 
 module M
@@ -54,16 +55,14 @@ module M
           suites[suite_class] = suite_class.test_methods unless suite_class.test_methods.empty?
           suites
         end
-        suites.map do |suite_class, test_methods|
+        collection = M::TestCollection.new
+        suites.each do |suite_class, test_methods|
           suite = suite_class.new(//)
-          test_methods.map do |test_method|
-            method     = suite.method(test_method)
-            start_line = method.source_location.last
-            end_line   = method.to_source.split("\n").size + start_line - 1
-
-            M::Test.new(test_method, start_line, end_line)
+          test_methods.each do |test_method|
+            collection << M::Test.new_from_object_and_method(suite, test_method)
           end
-        end.flatten
+        end
+        collection
       end
     end
 
