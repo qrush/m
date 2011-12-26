@@ -1,4 +1,5 @@
 require "ruby_parser"
+require "sourcify"
 
 require "m/version"
 
@@ -32,29 +33,22 @@ module M
 
     def tests
       @tests ||= begin
-        tests = {}
-        parser = RubyParser.new
-        sexps = parser.parse(File.read(@file))
-
-        sexps.each_of_type(:iter) do |sexp|
-          test_sexp = sexp.sexp_body.first
-          if test_sexp[2] == :test
-            method_name = "test_#{test_sexp.find_node(:arglist).find_node(:str).sexp_body.first}".gsub(" ", "_")
-            lines = []
-            sexp.each_of_type(:call) do |call|
-              lines << call.line
-            end
-            tests[method_name] = [sexp.line, lines.max]
+        $:.unshift "./test"
+        load @file
+        suites = Test::Unit::TestCase.test_suites.inject({}) do |suites, suite_class|
+          suites[suite_class] = suite_class.test_methods unless suite_class.test_methods.empty?
+          suites
+        end
+        tests = suites.map do |suite_class, test_methods|
+          suite = suite_class.new(//)
+          test_methods.map do |test_method|
+            method     = suite.method(test_method)
+            start_line = method.source_location.last
+            end_line   = method.to_source.split("\n").size + start_line - 1
+            [test_method, [start_line, end_line]]
           end
         end
-
-        sexps.each_of_type(:defn) do |sexp|
-          method_name = sexp.sexp_body.first
-          if method_name =~ /^test/
-            tests[method_name] = [sexp.line, sexp.scope.line]
-          end
-        end
-        tests
+        Hash[*tests]
       end
     end
 

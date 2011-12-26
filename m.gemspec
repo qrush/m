@@ -11,6 +11,7 @@ Gem::Specification.new do |gem|
   gem.version       = "0.0.1"
 
   gem.add_runtime_dependency "ruby_parser", "~> 2.3.1"
+  gem.add_runtime_dependency "sourcify", "~> 0.5"
   gem.add_development_dependency "rake"
   gem.add_development_dependency "activesupport"
 
