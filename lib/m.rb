@@ -14,18 +14,20 @@ module M
       if @line.zero?
         run_tests
       else
-        tests.each do |method_name, (start_line, end_line)|
-          if @line >= start_line && @line <= end_line
-            run_tests method_name
-          end
+        tests_to_run = tests.select do |method_name, (start_line, end_line)|
+          @line >= start_line && @line <= end_line
         end
 
-        message = "No tests found on line #{@line}. Valid tests to run:\n\n"
-        column_size = tests.keys.map { |method_name| method_name.to_s.size }.max
-        tests.sort_by { |test| test.last.first }.each do |method_name, (start_line, end_line)|
-          message << "#{sprintf("%0#{column_size}s", method_name)}: m #{@file}:#{start_line}\n"
+        if tests_to_run.size > 0
+          run_tests(tests_to_run)
+        else
+          message = "No tests found on line #{@line}. Valid tests to run:\n\n"
+          column_size = tests.keys.map { |method_name| method_name.to_s.size }.max
+          tests.sort_by { |test| test.last.first }.each do |method_name, (start_line, end_line)|
+            message << "#{sprintf("%0#{column_size}s", method_name)}: m #{@file}:#{start_line}\n"
+          end
+          abort message
         end
-        abort message
       end
     end
 
@@ -52,9 +54,12 @@ module M
       end
     end
 
-    def run_tests(method_name = nil)
+    def run_tests(tests_to_run = [])
+      method_names = tests_to_run.map(&:first)
       command = "ruby -Itest #{@file}"
-      command << " -n '/#{method_name}/'" if method_name
+      if method_names.size > 0
+        command << " -n '/(#{method_names.join('|')})/'"
+      end
       exec command
     end
   end
