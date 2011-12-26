@@ -34,6 +34,29 @@ You can run a test by line number, using format `m TEST_FILE:LINE_NUMBER_OF_TEST
 
     1 tests, 1 assertions, 0 failures, 0 errors, 0 skips
 
+Hit the wrong line number? No problem, `m` helps you out:
+
+    $ m test/example_test.rb:2
+    No tests found on line 2. Valid tests to run:
+
+     test_apple: m test/examples/test_unit_example_test.rb:4
+    test_banana: m test/examples/test_unit_example_test.rb:8
+
+Want to run the whole test? Just leave off the line number.
+
+    $ m test/example_test.rb
+    Run options: 
+
+    # Running tests:
+
+    ..
+
+    Finished tests in 0.001293s, 1546.7904 tests/s, 3093.5808 assertions/s.
+
+    1 tests, 2 assertions, 0 failures, 0 errors, 0 skips
+
+`m` also works with `ActiveSupport::TestCase` as well, so it will work great with your Rails test suites.
+
 ## License
 
 This gem is MIT licensed, please see `LICENSE` for more information.
