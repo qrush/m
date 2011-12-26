@@ -16,31 +16,16 @@ module M
     end
 
     def run
-      if @line.zero?
-        run_tests
+      tests_to_run = tests.within(@line)
+
+      if tests_to_run.size > 0
+        run_tests(tests_to_run)
       else
-        # collection of tests:
-        # what tests are within this range of lines?
-        # what is the size of the longest test case?
-        # tests sorted by start number
-        #
-        # test class:
-        # #start_line
-        # #end_line
-        # #name
-
-        tests_to_run = tests.within(@line)
-
-        if tests_to_run.size > 0
-          run_tests(tests_to_run)
-        else
-          message = "No tests found on line #{@line}. Valid tests to run:\n\n"
-          column_size = tests.map { |test| test.name.to_s.size }.max
-          tests.sort_by(&:start_line).each do |test|
-            message << "#{sprintf("%0#{column_size}s", test.name)}: m #{@file}:#{test.start_line}\n"
-          end
-          abort message
+        message = "No tests found on line #{@line}. Valid tests to run:\n\n"
+        tests.by_line_number do |test|
+          message << "#{sprintf("%0#{tests.column_size}s", test.name)}: m #{@file}:#{test.start_line}\n"
         end
+        abort message
       end
     end
 
@@ -65,14 +50,9 @@ module M
       end
     end
 
-    def run_tests(tests_to_run = [])
-      method_names = tests_to_run.map(&:name)
-
-      if method_names.empty?
-        exec "ruby -Itest #{@file}"
-      else
-        exit ::Test::Unit::AutoRunner.run(false, nil, ["-n", "/(#{method_names.join('|')})/"])
-      end
+    def run_tests(collection)
+      test_names = collection.map(&:name).join('|')
+      exit ::Test::Unit::AutoRunner.run(false, nil, ["-n", "/(#{test_names})/"])
     end
   end
 
