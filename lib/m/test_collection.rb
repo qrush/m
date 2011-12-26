@@ -1,17 +1,17 @@
 module M
   class TestCollection
     include Enumerable
+    extend Forwardable
+    def_delegators :@collection, :size, :<<, :each
 
-    def initialize
-      @collection = []
+    def initialize(collection = nil)
+      @collection = collection || []
     end
 
-    def <<(test)
-      @collection << test
-    end
-
-    def each(&block)
-      @collection.each(&block)
+    def within(line)
+      self.class.new(select do |test|
+        (test.start_line..test.end_line).include? line
+      end)
     end
   end
 end

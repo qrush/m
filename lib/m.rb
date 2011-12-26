@@ -1,3 +1,4 @@
+require "forwardable"
 require "ostruct"
 
 require "ruby_parser"
@@ -28,9 +29,7 @@ module M
         # #end_line
         # #name
 
-        tests_to_run = tests.select do |test|
-          (test.start_line..test.end_line).include? @line
-        end
+        tests_to_run = tests.within(@line)
 
         if tests_to_run.size > 0
           run_tests(tests_to_run)
