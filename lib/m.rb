@@ -56,11 +56,12 @@ module M
 
     def run_tests(tests_to_run = [])
       method_names = tests_to_run.map(&:first)
-      command = "ruby -Itest #{@file}"
-      if method_names.size > 0
-        command << " -n '/(#{method_names.join('|')})/'"
+
+      if method_names.empty?
+        exec "ruby -Itest #{@file}"
+      else
+        exit Test::Unit::AutoRunner.run(false, nil, ["-n", "/(#{method_names.join('|')})/"])
       end
-      exec command
     end
   end
 
