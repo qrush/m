@@ -1,8 +1,7 @@
 require "forwardable"
 require "ostruct"
 
-require "ruby_parser"
-require "sourcify"
+require "method_source"
 
 require "m/runner"
 require "m/test"

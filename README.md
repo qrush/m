@@ -1,6 +1,6 @@
 # m
 
-`m` stands :metal: (metal), which is a better test/unit test runner. @sferik took `t` so this was the next best option.
+`m` stands for :metal: (metal), which is a better test/unit test runner. @sferik took `t` so this was the next best option.
 
 ## Usage
 
