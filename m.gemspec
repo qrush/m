@@ -14,5 +14,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "rake"
   gem.add_development_dependency "activesupport"
 
+  gem.required_ruby_version = "~> 1.9"
+
   gem.summary = description = %q{Run test/unit tests by line number. Metal!}
 end
