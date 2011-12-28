@@ -16,7 +16,7 @@ Install via:
 
 ## Usage
 
-Basically, I was sick of using the `-n` flag to grab one test to run, like RSpec's test runner works.
+Basically, I was sick of using the `-n` flag to grab one test to run. Instead, I prefer how RSpec's test runner allows tests to be run by line number.
 
 Given this file:
 
