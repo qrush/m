@@ -1,4 +1,5 @@
-#`m`  stands for :metal: (metal), which is a better test/unit test runner. @sferik took `t` so this was the next best option.
+#`m`  stands for metal, which is a better test/unit test runner that can run
+#tests by line number.
 #[![m ci](https://secure.travis-ci.org/qrush/m.png)](http://travis-ci.org/qrush/m)
 #
 #![Rush is a heavy metal band. Look it up on Wikipedia.](https://raw.github.com/qrush/m/master/rush.jpg)
@@ -10,11 +11,14 @@
 #
 #     gem install m
 #
-#`m` is Ruby 1.9+ only. Sorry, but `method_source`, `sourcify`, and `ruby_parser` all have trouble with 1.8 so I'm giving up and only supporting 1.9 for now. Patches are welcome!
+#`m` is Ruby 1.9+ only. Sorry, but `method_source`, `sourcify`, and `ruby_parser`
+#all have trouble with 1.8 so I'm giving up and only supporting 1.9 for now.
+#Patches are welcome!
 #
 ### Usage
 #
-#Basically, I was sick of using the `-n` flag to grab one test to run. Instead, I prefer how RSpec's test runner allows tests to be run by line number.
+#Basically, I was sick of using the `-n` flag to grab one test to run. Instead, I
+#prefer how RSpec's test runner allows tests to be run by line number.
 #
 #Given this file:
 #
@@ -65,12 +69,14 @@
 #
 #     1 tests, 2 assertions, 0 failures, 0 errors, 0 skips
 #
-#`m` also works with `ActiveSupport::TestCase` as well, so it will work great with your Rails test suites.
+#`m` also works with `ActiveSupport::TestCase` as well, so it will work great with
+#your Rails test suites.
 #
 ### License
 #
 #This gem is MIT licensed, please see `LICENSE` for more information.
 
+### M, setup and other top level fun
 #### Stdlib requires
 # Using delegators and open structs since I'm too lazy to make objects
 require "forwardable"
