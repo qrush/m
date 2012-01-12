@@ -17,7 +17,7 @@ require 'rocco/tasks'
 Rocco::make 'docs/'
 
 desc 'Build rocco docs'
-task :docs => [:clean, :rocco]
+task :docs => [:rocco]
 directory 'docs/'
 
 desc 'Build docs and open in browser for the reading'
@@ -38,11 +38,25 @@ task :doc => :docs
 
 # GITHUB PAGES ===============================================================
 
+#desc 'Update gh-pages branch'
+#task :pages => [:docs] do
+#  dir = "/tmp/m"
+#  sh "rm -rf #{dir}"
+#  sh "mkdir -p #{dir}"
+#  sh "cp -r docs #{dir}"
+#  sh "tree #{dir}"
+#end
+
+task :clean_docs do
+  sh "rm -rf docs/"
+end
+
 desc 'Update gh-pages branch'
-task :pages => ['docs/.git', :docs] do
+task :pages => [:clean_docs, 'docs/.git', :docs] do
   rev = `git rev-parse --short HEAD`.strip
   Dir.chdir 'docs' do
-    sh "mv lib m"
+    sh "mv lib/m m"
+    sh "rm -rf lib"
     sh "git add -A"
     sh "git commit -m 'rebuild pages from #{rev}'" do |ok,res|
       if ok
