@@ -17,7 +17,7 @@ require 'rocco/tasks'
 Rocco::make 'docs/'
 
 desc 'Build rocco docs'
-task :docs => :rocco
+task :docs => [:clean, :rocco]
 directory 'docs/'
 
 desc 'Build docs and open in browser for the reading'
@@ -42,8 +42,7 @@ desc 'Update gh-pages branch'
 task :pages => ['docs/.git', :docs] do
   rev = `git rev-parse --short HEAD`.strip
   Dir.chdir 'docs' do
-    sh "mkdir -p lib/m/m"
-    sh "mv lib/m/*.html lib/m/m/"
+    sh "mv lib m"
     sh "git add -A"
     sh "git commit -m 'rebuild pages from #{rev}'" do |ok,res|
       if ok
