@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>m.rb</title>
+  <link rel="stylesheet" href="http://jashkenas.github.com/docco/resources/docco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div id="jump_to">
+    Jump To &hellip;
+    <div id="jump_wrapper">
+      <div id="jump_page">
+          <a class="source" href="m.html">m.rb</a>
+          <a class="source" href="m/runner.html">runner.rb</a>
+          <a class="source" href="m/test_collection.html">test_collection.rb</a>
+          <a class="source" href="m/test_method.html">test_method.rb</a>
+      </div>
+    </div>
+  </div>
+  <table cellspacing=0 cellpadding=0>
+  <thead>
+    <tr>
+      <th class=docs><h1>m.rb</h1></th>
+      <th class=code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr id='section-Install'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-Install">&#182;</a>
+        </div>
+        <p><code>m</code>  stands for metal, which is a better test/unit test runner that can run
+tests by line number.</p>
+
+<p><a href="http://travis-ci.org/qrush/m"><img src="https://secure.travis-ci.org/qrush/m.png" alt="m ci" /></a></p>
+
+<p><img src="https://raw.github.com/qrush/m/master/rush.jpg" alt="Rush is a heavy metal band. Look it up on Wikipedia." /></p>
+
+<p><sub><a href="http://www.flickr.com/photos/8507625@N02/3468299995/">Rush at the Bristol Colston Hall May 1979</a></sub></p>
+
+<h2>Install</h2>
+
+<p>Install via:</p>
+
+<pre><code>gem install m
+</code></pre>
+
+<p><code>m</code> is Ruby 1.9+ only. Sorry, but <code>method_source</code>, <code>sourcify</code>, and <code>ruby_parser</code>
+all have trouble with 1.8 so I&rsquo;m giving up and only supporting 1.9 for now.
+Patches are welcome!</p>
+
+<h2>Usage</h2>
+
+<p>Basically, I was sick of using the <code>-n</code> flag to grab one test to run. Instead, I
+prefer how RSpec&rsquo;s test runner allows tests to be run by line number.</p>
+
+<p>Given this file:</p>
+
+<pre><code>$ cat -n test/example_test.rb
+ 1  require 'test/unit'
+ 2  
+ 3  class ExampleTest &lt; Test::Unit::TestCase
+ 4    def test_apple
+ 5      assert_equal 1, 1
+ 6    end
+ 7  
+ 8    def test_banana
+ 9      assert_equal 1, 1
+10    end
+11  end
+</code></pre>
+
+<p>You can run a test by line number, using format <code>m TEST_FILE:LINE_NUMBER_OF_TEST</code>:</p>
+
+<pre><code>$ m test/example_test.rb:4
+Run options: -n /test_apple/
+
+# Running tests:
+
+.
+
+Finished tests in 0.000525s, 1904.7619 tests/s, 1904.7619 assertions/s.
+
+1 tests, 1 assertions, 0 failures, 0 errors, 0 skips
+</code></pre>
+
+<p>Hit the wrong line number? No problem, <code>m</code> helps you out:</p>
+
+<pre><code>$ m test/example_test.rb:2
+No tests found on line 2. Valid tests to run:
+
+ test_apple: m test/examples/test_unit_example_test.rb:4
+test_banana: m test/examples/test_unit_example_test.rb:8
+</code></pre>
+
+<p>Want to run the whole test? Just leave off the line number.</p>
+
+<pre><code>$ m test/example_test.rb
+Run options: 
+
+# Running tests:
+
+..
+
+Finished tests in 0.001293s, 1546.7904 tests/s, 3093.5808 assertions/s.
+
+1 tests, 2 assertions, 0 failures, 0 errors, 0 skips
+</code></pre>
+
+<p><code>m</code> also works with <code>ActiveSupport::TestCase</code> as well, so it will work great with
+your Rails test suites.</p>
+
+<h2>License</h2>
+
+<p>This gem is MIT licensed, please see <code>LICENSE</code> for more information.</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre></pre></div>
+      </td>
+    </tr>
+    <tr id='section-M,_setup_and_other_top_level_fun'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-M,_setup_and_other_top_level_fun">&#182;</a>
+        </div>
+        <h2>M, setup and other top level fun</h2>
+
+<h3>Stdlib requires</h3>
+
+<p>Using delegators and open structs since I&rsquo;m too lazy to make objects</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre><span class="nb">require</span> <span class="s2">&quot;forwardable&quot;</span>
+<span class="nb">require</span> <span class="s2">&quot;ostruct&quot;</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-External_requires'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-External_requires">&#182;</a>
+        </div>
+        <h3>External requires</h3>
+
+<p>After trying several source parsing libraries, this is the only one that seems to work consistently.</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre><span class="nb">require</span> <span class="s2">&quot;method_source&quot;</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-Internal_requires'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-Internal_requires">&#182;</a>
+        </div>
+        <h3>Internal requires</h3>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre><span class="nb">require</span> <span class="s2">&quot;m/runner&quot;</span>
+<span class="nb">require</span> <span class="s2">&quot;m/test_collection&quot;</span>
+<span class="nb">require</span> <span class="s2">&quot;m/test_method&quot;</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-Public_interface'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-Public_interface">&#182;</a>
+        </div>
+        <h3>Public interface</h3>
+
+<p>Maybe this gem should have a longer name? Metal?</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre><span class="k">module</span> <span class="nn">M</span>
+  <span class="no">VERSION</span> <span class="o">=</span> <span class="s2">&quot;0.0.1&quot;</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-6'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-6">&#182;</a>
+        </div>
+        <p>Accept arguments coming from bin/m and run tests.</p>
+
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">run</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span>
+    <span class="no">Runner</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span><span class="o">.</span><span class="n">run</span>
+  <span class="k">end</span>
+<span class="k">end</span></pre></div>
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
