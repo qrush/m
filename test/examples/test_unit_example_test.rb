@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'test/unit'
 
 class TestUnitExampleTest < Test::Unit::TestCase
   def setup

@@ -1,4 +1,5 @@
-require 'test_helper'
+require 'test/unit'
+require 'active_support/test_case'
 
 class ActiveSupportExampleTest < ActiveSupport::TestCase
   setup do

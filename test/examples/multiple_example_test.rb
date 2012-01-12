@@ -1,4 +1,5 @@
-require 'test_helper'
+require 'test/unit'
+require 'active_support/test_case'
 
 class MultipleExampleTest < ActiveSupport::TestCase
   %w(grape habanero iceplant).each do |fruit|

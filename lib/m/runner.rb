@@ -11,6 +11,16 @@ module M
         # Parse out ARGV, it should be coming in in a format like `test/test_file.rb:9`
         @file, line = argv.first.split(':')
         @line = line.to_i
+
+        if Dir.exist?(@file)
+          require 'rake/testtask'
+          Rake::TestTask.new(:custom) do |t|
+            t.libs << 'test'
+            t.pattern = "#{@file}/*test*.rb"
+          end
+          Rake::Task['custom'].invoke
+          exit
+        end
       end
     end
 

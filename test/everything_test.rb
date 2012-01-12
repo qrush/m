@@ -12,4 +12,12 @@ class EverythingTest < MTest
     assert_match /Failed loading test file/, output
     assert_match /cannot load such file/, output
   end
+
+  def test_running_tests_within_a_subdirectory
+    output = m('examples/subdir')
+    assert_output /3 tests/, output
+
+    output = m('examples')
+    assert_output /10 tests/, output
+  end
 end
