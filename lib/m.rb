@@ -1,5 +1,6 @@
 #`m`  stands for metal, which is a better test/unit test runner that can run
 #tests by line number.
+#
 #[![m ci](https://secure.travis-ci.org/qrush/m.png)](http://travis-ci.org/qrush/m)
 #
 #![Rush is a heavy metal band. Look it up on Wikipedia.](https://raw.github.com/qrush/m/master/rush.jpg)
@@ -22,7 +23,7 @@
 #
 #Given this file:
 #
-#      $ cat -n test/example_test.rb
+#     $ cat -n test/example_test.rb
 #      1	require 'test/unit'
 #      2	
 #      3	class ExampleTest < Test::Unit::TestCase
