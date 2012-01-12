@@ -3,9 +3,15 @@ module M
   # Instead of slamming all of this junk in an `M` class, it's here instead.
   class Runner
     def initialize(argv)
-      # Parse out ARGV, it should be coming in in a format like `test/test_file.rb:9`
-      @file, line = argv.first.split(':')
-      @line = line.to_i
+      # With no arguments,
+      if argv.empty?
+        # Just shell out to `rake test`.
+        exec "rake test"
+      else
+        # Parse out ARGV, it should be coming in in a format like `test/test_file.rb:9`
+        @file, line = argv.first.split(':')
+        @line = line.to_i
+      end
     end
 
     def run
