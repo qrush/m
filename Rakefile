@@ -48,7 +48,7 @@ task :pages => [:clean_docs, 'docs/.git', :docs] do
   rev = `git rev-parse --short HEAD`.strip
   Dir.chdir 'docs' do
     sh "mv lib/m m"
-    sh "rm -rf lib"
+    sh "mv lib/m.html m/m.html"
     sh "git add -A"
     sh "git commit -m 'rebuild pages from #{rev}'" do |ok,res|
       if ok
