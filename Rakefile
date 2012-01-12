@@ -42,6 +42,8 @@ desc 'Update gh-pages branch'
 task :pages => ['docs/.git', :docs] do
   rev = `git rev-parse --short HEAD`.strip
   Dir.chdir 'docs' do
+    sh "mkdir -p lib/m/m"
+    sh "mv lib/m/*.html lib/m/m/"
     sh "git add -A"
     sh "git commit -m 'rebuild pages from #{rev}'" do |ok,res|
       if ok
