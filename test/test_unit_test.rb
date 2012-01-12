@@ -11,11 +11,6 @@ class TestUnitTest < MTest
     assert_output /2 tests/, output
   end
 
-  def test_runs_entire_test_suite_with_no_arguments
-    output = m('')
-    assert_output /10 tests/, output
-  end
-
   def test_run_inside_of_test
     output = m('examples/test_unit_example_test.rb:8')
     assert_output /1 tests, 1 assertions/, output

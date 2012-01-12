@@ -46,8 +46,13 @@ module M
       # Since we're not using `ruby -Itest` to run the tests, we need to add this directory to the `LOAD_PATH`
       $:.unshift "./test"
 
-      # Fire up this Ruby file. Let's hope it actually has tests.
-      load @file
+      begin
+        # Fire up this Ruby file. Let's hope it actually has tests.
+        load @file
+      rescue LoadError => e
+        # Fail with a happier error message instead of spitting out a backtrace from this gem
+        abort "Failed loading test file:\n#{e.message}"
+      end
 
       # Use some janky internal test/unit API to group test methods by test suite.
       Test::Unit::TestCase.test_suites.inject({}) do |suites, suite_class|
