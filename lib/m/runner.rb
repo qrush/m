@@ -30,10 +30,11 @@ module M
         message = "No tests found on line #{@line}. Valid tests to run:\n\n"
 
         # For every test ordered by line number,
+        # spit out the test name and line number where it starts,
         tests.by_line_number do |test|
-          # spit out the test name and line number where it starts,
           message << "#{sprintf("%0#{tests.column_size}s", test.name)}: m #{@file}:#{test.start_line}\n"
         end
+
         # fail like a good unix process should.
         abort message
       end
@@ -62,20 +63,19 @@ module M
       end
     end
 
-    # Shoves tests together in our custom container and collection classes
+    # Shoves tests together in our custom container and collection classes.
+    # Memoize it since it's unnecessary to do this more than one for a given file.
     def tests
-      # Memoize it since it's unnecessary to do this more than one for a given file
       @tests ||= begin
-        collection = TestCollection.new
         # With each suite and array of tests,
-        suites.each do |suite_class, test_methods|
-          # And with each test method present in this test file,
+        # and with each test method present in this test file,
+        # shove a new test method into this collection.
+        suites.inject(TestCollection.new) do |collection, (suite_class, test_methods)|
           test_methods.each do |test_method|
-            # Shove a new test method into this collection
             collection << TestMethod.create(suite_class, test_method)
           end
+          collection
         end
-        collection
       end
     end
   end
