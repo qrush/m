@@ -58,20 +58,19 @@ prefer how RSpec&rsquo;s test runner allows tests to be run by line number.</p>
 
 <p>Given this file:</p>
 
-<pre><code>$ cat -n test/example_test.rb
-1   require 'test/unit'
-2   
-3   class ExampleTest &lt; Test::Unit::TestCase
-4     def test_apple
-5       assert_equal 1, 1
-6     end
-7   
-8     def test_banana
-9       assert_equal 1, 1
+<pre><code> $ cat -n test/example_test.rb
+ 1  require 'test/unit'
+ 2  
+ 3  class ExampleTest &lt; Test::Unit::TestCase
+ 4    def test_apple
+ 5      assert_equal 1, 1
+ 6    end
+ 7  
+ 8    def test_banana
+ 9      assert_equal 1, 1
+10    end
+11  end
 </code></pre>
-
-<p>   10     end
-   11   end</p>
 
 <p>You can run a test by line number, using format <code>m TEST_FILE:LINE_NUMBER_OF_TEST</code>:</p>
 
