@@ -38,15 +38,7 @@ task :doc => :docs
 
 # GITHUB PAGES ===============================================================
 
-#desc 'Update gh-pages branch'
-#task :pages => [:docs] do
-#  dir = "/tmp/m"
-#  sh "rm -rf #{dir}"
-#  sh "mkdir -p #{dir}"
-#  sh "cp -r docs #{dir}"
-#  sh "tree #{dir}"
-#end
-
+desc "really kill docs folder"
 task :clean_docs do
   sh "rm -rf docs/"
 end
