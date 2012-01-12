@@ -18,7 +18,7 @@ module M
         test_names = tests_to_run.map(&:name).join('|')
 
         # directly run the tests from here and exit with the status of the tests passing or failing
-        exit Test::Unit::AutoRunner.run(false, nil, ["-n", "/(#{test_names}/"])
+        exit Test::Unit::AutoRunner.run(false, nil, ["-n", "/(#{test_names})/"])
       else
         # Otherwise we found no tests on this line, so you need to pick one.
         message = "No tests found on line #{@line}. Valid tests to run:\n\n"

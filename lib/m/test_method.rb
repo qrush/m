@@ -11,7 +11,7 @@ module M
     def self.create(suite_class, test_method)
       # Hopefully it's been defined as an instance method, so we'll need to
       # look up the ruby Method instance for it
-      method     = suite_class.instance_method(test_method)
+      method = suite_class.instance_method(test_method)
 
       # Ruby can find the starting line for us, so pull that out of the array
       start_line = method.source_location.last
@@ -22,7 +22,7 @@ module M
       #
       # The end line should be the number of line breaks in the method source,
       # added to the starting line and subtracted by one.
-      end_line   = method.source.split("\n").size + start_line - 1
+      end_line = method.source.split("\n").size + start_line - 1
 
       # Shove the given attributes into a new databag
       new(test_method, start_line, end_line)
