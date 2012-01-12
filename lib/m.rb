@@ -84,6 +84,8 @@ require "forwardable"
 require "ostruct"
 
 #### External requires
+# Instead of using rake/rake_test_loader and reduplicating logic there, just use `TestTask`.
+require "rake/testtask"
 # After trying several source parsing libraries, this is the only one that seems to work consistently.
 require "method_source"
 

@@ -3,28 +3,41 @@ module M
   # Instead of slamming all of this junk in an `M` class, it's here instead.
   class Runner
     def initialize(argv)
+      @argv = argv
+    end
+
+    def run
+      parse
+      execute
+    end
+
+    private
+
+    def parse
       # With no arguments,
-      if argv.empty?
+      if @argv.empty?
         # Just shell out to `rake test`.
         exec "rake test"
       else
         # Parse out ARGV, it should be coming in in a format like `test/test_file.rb:9`
-        @file, line = argv.first.split(':')
+        @file, line = @argv.first.split(':')
         @line = line.to_i
 
+        # If this file is a directory, not a file, run the tests inside of this directory
         if Dir.exist?(@file)
-          require 'rake/testtask'
-          Rake::TestTask.new(:custom) do |t|
+          # Make a new rake task with a hopefully unique name, and run every test looking file in it
+          Rake::TestTask.new(:m_custom) do |t|
             t.libs << 'test'
             t.pattern = "#{@file}/*test*.rb"
           end
-          Rake::Task['custom'].invoke
+          # Invoke the rake task and exit, hopefully it'll work!
+          Rake::Task['m_custom'].invoke
           exit
         end
       end
     end
 
-    def run
+    def execute
       # Locate tests to run that may be inside of this line. There could be more than one!
       tests_to_run = tests.within(@line)
 
@@ -49,8 +62,6 @@ module M
         abort message
       end
     end
-
-    private
 
     # Finds all test suites in this test file, with test methods included.
     def suites
