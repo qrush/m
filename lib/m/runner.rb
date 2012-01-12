@@ -57,7 +57,7 @@ module M
       # Use some janky internal test/unit API to group test methods by test suite.
       Test::Unit::TestCase.test_suites.inject({}) do |suites, suite_class|
         # End up with a hash of suite class name to an array of test methods, so we can later find them and ignore empty test suites
-        suites[suite_class] = suite_class.test_methods unless suite_class.test_methods.empty?
+        suites[suite_class] = suite_class.test_methods if suite_class.test_methods.size > 0
         suites
       end
     end
