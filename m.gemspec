@@ -1,3 +1,5 @@
+require './lib/m'
+
 Gem::Specification.new do |gem|
   gem.authors       = ["Nick Quaranto"]
   gem.email         = ["nick@quaran.to"]
@@ -8,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   gem.name          = "m"
   gem.require_paths = ["lib"]
-  gem.version       = "0.0.1"
+  gem.version       = M::VERSION
 
   gem.add_runtime_dependency "method_source", "~> 0.6.7"
   gem.add_runtime_dependency "rake", "~> 0.9.2.2"
