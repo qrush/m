@@ -17,7 +17,7 @@ require 'rocco/tasks'
 Rocco::make 'docs/'
 
 desc 'Build rocco docs'
-task :docs => [:rocco]
+task :docs => :rocco
 directory 'docs/'
 
 desc 'Build docs and open in browser for the reading'
@@ -62,6 +62,6 @@ end
 # Update the pages/ directory clone
 file 'docs/.git' => ['docs/'] do |f|
   sh "cd docs && git init -q && git remote add o ../.git" if !File.exist?(f.name)
-  sh "cd docs && git fetch -q o && git reset -q --hard o/gh-pages && touch ."
+  sh "cd docs && git fetch -q o && git reset -q --hard o/gh-pages && git rm -r . && git commit -m 'blank out' && touch ."
 end
 CLOBBER.include 'docs/.git'
