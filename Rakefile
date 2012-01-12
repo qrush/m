@@ -10,6 +10,11 @@ Rake::TestTask.new do |t|
   t.pattern = 'test/*_test.rb'
 end
 
+desc 'Run simple benchmarks'
+task :bench do
+  exec "ruby test/bench.rb"
+end
+
 # ROCCO ===============================================================
 
 require 'rdiscount'
