@@ -93,7 +93,7 @@
 ### M, your metal test runner
 # Maybe this gem should have a longer name? Metal?
 module M
-  VERSION = "1.0.0"
+  VERSION = "1.0.1"
 
   # Accept arguments coming from bin/m and run tests.
   def self.run(argv)
