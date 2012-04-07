@@ -38,12 +38,12 @@
 #
 #     $ cat -n test/example_test.rb
 #      1	require 'test/unit'
-#      2	
+#      2
 #      3	class ExampleTest < Test::Unit::TestCase
 #      4	  def test_apple
 #      5	    assert_equal 1, 1
 #      6	  end
-#      7	
+#      7
 #      8	  def test_banana
 #      9	    assert_equal 1, 1
 #     10	  end
@@ -73,7 +73,7 @@
 #Want to run the whole test? Just leave off the line number.
 #
 #     $ m test/example_test.rb
-#     Run options: 
+#     Run options:
 #
 #     # Running tests:
 #
@@ -128,6 +128,8 @@ module M
         # Just shell out to `rake test`.
         exec "rake test"
       else
+        parse_options! @argv
+
         # Parse out ARGV, it should be coming in in a format like `test/test_file.rb:9`
         @file, line = @argv.first.split(':')
         @line = line.to_i
@@ -145,6 +147,28 @@ module M
           exit
         end
       end
+    end
+
+    def parse_options!(argv)
+      require 'optparse'
+
+      OptionParser.new do |opts|
+        opts.banner  = 'Options:'
+        opts.version = M::VERSION
+
+        opts.on '-h', '--help', 'Display this help.' do
+          puts "Usage: m [OPTIONS] [FILES]\n\n", opts
+          exit
+        end
+
+        opts.on '--version', 'Display version.' do
+          puts "m #{M::VERSION}"
+          exit
+        end
+
+        opts.parse! argv
+      end
+
     end
 
     def execute
