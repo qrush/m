@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>test_method.rb</title>
+  <link rel="stylesheet" href="http://jashkenas.github.com/docco/resources/docco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div id="jump_to">
+    Jump To &hellip;
+    <div id="jump_wrapper">
+      <div id="jump_page">
+          <a class="source" href="../m.html">m.rb</a>
+          <a class="source" href="test_collection.html">test_collection.rb</a>
+          <a class="source" href="test_method.html">test_method.rb</a>
+      </div>
+    </div>
+  </div>
+  <table cellspacing=0 cellpadding=0>
+  <thead>
+    <tr>
+      <th class=docs><h1>test_method.rb</h1></th>
+      <th class=code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr id='section-1'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-1">&#182;</a>
+        </div>
+        
+      </td>
+      <td class=code>
+        <div class='highlight'><pre><span class="nb">require</span> <span class="s2">&quot;ostruct&quot;</span>
+
+<span class="k">module</span> <span class="nn">M</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-Simple_data_structure_for_what_a_test_method_contains.'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-Simple_data_structure_for_what_a_test_method_contains.">&#182;</a>
+        </div>
+        <h2>Simple data structure for what a test method contains.</h2>
+
+<p>Too lazy to make a class for this when it&rsquo;s really just a bag of data
+without any behavior.</p>
+
+<p>Includes the name of this method, what line on the file it begins on,
+and where it ends.</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>  <span class="k">class</span> <span class="nc">TestMethod</span> <span class="o">&lt;</span> <span class="no">Struct</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">:start_line</span><span class="p">,</span> <span class="ss">:end_line</span><span class="p">)</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-3'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-3">&#182;</a>
+        </div>
+        <p>Set up a new test method for this test suite class</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="n">suite_class</span><span class="p">,</span> <span class="n">test_method</span><span class="p">)</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-4'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-4">&#182;</a>
+        </div>
+        <p>Hopefully it&rsquo;s been defined as an instance method, so we&rsquo;ll need to
+look up the ruby Method instance for it</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>      <span class="nb">method</span> <span class="o">=</span> <span class="n">suite_class</span><span class="o">.</span><span class="n">instance_method</span><span class="p">(</span><span class="n">test_method</span><span class="p">)</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-5'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-5">&#182;</a>
+        </div>
+        <p>Ruby can find the starting line for us, so pull that out of the array</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>      <span class="n">start_line</span> <span class="o">=</span> <span class="nb">method</span><span class="o">.</span><span class="n">source_location</span><span class="o">.</span><span class="n">last</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-6'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-6">&#182;</a>
+        </div>
+        <p>Ruby can&rsquo;t find the end line however, and I&rsquo;m too lazy to write
+a parser. Instead, <code>method_source</code> adds <code>Method#source</code> so we can
+deduce this ourselves.</p>
+
+<p>The end line should be the number of line breaks in the method source,
+added to the starting line and subtracted by one.</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>      <span class="nb">require</span> <span class="s2">&quot;method_source&quot;</span>
+      <span class="n">end_line</span> <span class="o">=</span> <span class="nb">method</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span> <span class="o">+</span> <span class="n">start_line</span> <span class="o">-</span> <span class="mi">1</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-7'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-7">&#182;</a>
+        </div>
+        <p>Shove the given attributes into a new databag</p>
+
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>      <span class="kp">new</span><span class="p">(</span><span class="n">test_method</span><span class="p">,</span> <span class="n">start_line</span><span class="p">,</span> <span class="n">end_line</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></pre></div>
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
