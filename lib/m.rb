@@ -83,8 +83,13 @@
 #
 #     1 tests, 2 assertions, 0 failures, 0 errors, 0 skips
 #
-#`m` also works with `ActiveSupport::TestCase` as well, so it will work great with
-#your Rails test suites.
+#### Supports
+#
+#`m` works with a few Ruby test frameworks:
+#
+#* `Test::Unit`
+#* `ActiveSupport::TestCase`
+#* `MiniTest::Unit::TestCase`
 #
 ### License
 #
@@ -151,8 +156,17 @@ module M
         # assemble the regexp to run these tests,
         test_names = tests_to_run.map(&:name).join('|')
 
+        # set up the args needed for the runner
+        test_arguments = ["-n", "/(#{test_names})/"]
+
         # directly run the tests from here and exit with the status of the tests passing or failing
-        exit Test::Unit::AutoRunner.run(false, nil, ["-n", "/(#{test_names})/"])
+        if defined?(Test)
+          exit Test::Unit::AutoRunner.run(false, nil, test_arguments)
+        elsif defined?(MiniTest)
+          exit MiniTest::Unit.runner.run test_arguments
+        else
+          not_supported
+        end
       else
         # Otherwise we found no tests on this line, so you need to pick one.
         message = "No tests found on line #{@line}. Valid tests to run:\n\n"
@@ -181,8 +195,17 @@ module M
         abort "Failed loading test file:\n#{e.message}"
       end
 
-      # Use some janky internal test/unit API to group test methods by test suite.
-      Test::Unit::TestCase.test_suites.inject({}) do |suites, suite_class|
+      # Figure out what test framework we're using
+      if defined?(Test)
+        suites = Test::Unit::TestCase.test_suites
+      elsif defined?(MiniTest)
+        suites = MiniTest::Unit::TestCase.test_suites
+      else
+        not_supported
+      end
+
+      # Use some janky internal APIs to group test methods by test suite.
+      suites.inject({}) do |suites, suite_class|
         # End up with a hash of suite class name to an array of test methods, so we can later find them and ignore empty test suites
         suites[suite_class] = suite_class.test_methods if suite_class.test_methods.size > 0
         suites
@@ -205,6 +228,11 @@ module M
           collection
         end
       end
+    end
+
+    # Fail loudly if this isn't supported
+    def not_supported
+      abort "This test framework is not supported! Please open up an issue at https://github.com/qrush/m !"
     end
   end
 end
