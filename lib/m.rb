@@ -184,8 +184,8 @@ module M
 
     # Finds all test suites in this test file, with test methods included.
     def suites
-      # Since we're not using `ruby -Itest` to run the tests, we need to add this directory to the `LOAD_PATH`
-      $:.unshift "./test"
+      # Since we're not using `ruby -Itest -Ilib` to run the tests, we need to add this directory to the `LOAD_PATH`
+      $:.unshift "./test", "./lib"
 
       begin
         # Fire up this Ruby file. Let's hope it actually has tests.
