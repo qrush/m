@@ -132,7 +132,7 @@ module M
 
         # Parse out ARGV, it should be coming in in a format like `test/test_file.rb:9`
         @file, line = @argv.first.split(':')
-        @line = line.to_i
+        @line ||= line.to_i
 
         # If this file is a directory, not a file, run the tests inside of this directory
         if Dir.exist?(@file)
@@ -161,14 +161,17 @@ module M
           exit
         end
 
-        opts.on '--version', 'Display version.' do
+        opts.on '--version', 'Display the version.' do
           puts "m #{M::VERSION}"
           exit
         end
 
+        opts.on '-l', '--line LINE', Integer, 'Line number for file.' do |line|
+          @line = line
+        end
+
         opts.parse! argv
       end
-
     end
 
     def execute
