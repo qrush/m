@@ -1,5 +1,3 @@
-require "ostruct"
-
 module M
   ### Simple data structure for what a test method contains.
   #
