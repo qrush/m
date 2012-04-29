@@ -97,6 +97,9 @@
 
 ### M, your metal test runner
 # Maybe this gem should have a longer name? Metal?
+
+require_relative 'm/framework'
+
 module M
   VERSION = "1.1.0"
 
@@ -108,8 +111,11 @@ module M
   ### Runner is in charge of running your tests.
   # Instead of slamming all of this junk in an `M` class, it's here instead.
   class Runner
-    def initialize(argv)
-      @argv = argv
+    attr_reader :framework
+
+    def initialize(argv, framework = Framework.new)
+      @argv      = argv
+      @framework = framework
     end
 
     # There's two steps to running our tests:
@@ -160,13 +166,7 @@ module M
         test_arguments = ["-n", "/(#{test_names})/"]
 
         # directly run the tests from here and exit with the status of the tests passing or failing
-        if defined?(Test)
-          exit Test::Unit::AutoRunner.run(false, nil, test_arguments)
-        elsif defined?(MiniTest)
-          exit MiniTest::Unit.runner.run test_arguments
-        else
-          not_supported
-        end
+        exit framework.run(test_arguments)
       else
         # Otherwise we found no tests on this line, so you need to pick one.
         message = "No tests found on line #{@line}. Valid tests to run:\n\n"
@@ -195,17 +195,8 @@ module M
         abort "Failed loading test file:\n#{e.message}"
       end
 
-      # Figure out what test framework we're using
-      if defined?(Test)
-        suites = Test::Unit::TestCase.test_suites
-      elsif defined?(MiniTest)
-        suites = MiniTest::Unit::TestCase.test_suites
-      else
-        not_supported
-      end
-
       # Use some janky internal APIs to group test methods by test suite.
-      suites.inject({}) do |suites, suite_class|
+      framework.test_suites.inject({}) do |suites, suite_class|
         # End up with a hash of suite class name to an array of test methods, so we can later find them and ignore empty test suites
         suites[suite_class] = suite_class.test_methods if suite_class.test_methods.size > 0
         suites
