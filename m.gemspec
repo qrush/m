@@ -19,7 +19,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "rocco"
   gem.add_development_dependency "minitest"
 
-  gem.required_ruby_version = "~> 1.9"
+  gem.required_ruby_version = ">= 1.9"
 
   gem.summary = description = %q{Run test/unit tests by line number. Metal!}
 end
