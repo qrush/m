@@ -187,10 +187,10 @@ module M
         test_arguments = ["-n", "/(#{test_names})/"]
 
         # directly run the tests from here and exit with the status of the tests passing or failing
-        if defined?(Test)
-          exit Test::Unit::AutoRunner.run(false, nil, test_arguments)
-        elsif defined?(MiniTest)
+        if defined?(MiniTest)
           exit MiniTest::Unit.runner.run test_arguments
+        elsif defined?(Test)
+          exit Test::Unit::AutoRunner.run(false, nil, test_arguments)
         else
           not_supported
         end
