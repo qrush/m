@@ -15,14 +15,14 @@
 #If you're using Bundler, you'll need to include it in your Gemfile. Toss it into the `test` group:
 #
 #     group :test do
-#       gem 'm', '~> 1.2'
+#       gem 'm', '~> 1.2.1'
 #     end
 #
 #Developing a RubyGem? Add `m` as a development dependency.
 #
 #     Gem::Specification.new do |gem|
 #       # ...
-#       gem.add_development_dependency "m", "~> 1.2"
+#       gem.add_development_dependency "m", "~> 1.2.1"
 #     end
 #
 #`m` is Ruby 1.9+ only. Sorry, but `method_source`, `sourcify`, and `ruby_parser`
@@ -98,7 +98,7 @@
 ### M, your metal test runner
 # Maybe this gem should have a longer name? Metal?
 module M
-  VERSION = "1.2.0" unless defined?(VERSION)
+  VERSION = "1.2.1" unless defined?(VERSION)
 
   # Accept arguments coming from bin/m and run tests.
   def self.run(argv)
