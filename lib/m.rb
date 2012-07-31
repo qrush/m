@@ -223,10 +223,10 @@ module M
       end
 
       # Figure out what test framework we're using
-      if defined?(Test)
-        suites = Test::Unit::TestCase.test_suites
-      elsif defined?(MiniTest)
+      if defined?(MiniTest)
         suites = MiniTest::Unit::TestCase.test_suites
+      elsif defined?(Test)
+        suites = Test::Unit::TestCase.test_suites
       else
         not_supported
       end
