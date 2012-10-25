@@ -188,7 +188,7 @@ module M
 
         # directly run the tests from here and exit with the status of the tests passing or failing
         if defined?(MiniTest)
-          exit MiniTest::Unit.runner.run test_arguments
+          exit MiniTest::Unit.new.run test_arguments
         elsif defined?(Test)
           exit Test::Unit::AutoRunner.run(false, nil, test_arguments)
         else
