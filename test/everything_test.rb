@@ -20,4 +20,9 @@ class EverythingTest < MTest
     output = m('examples')
     assert_output /12 tests/, output
   end
+
+  def test_blank_file_is_quieter
+    output = m('bananas')
+    assert_no_match /Valid tests to run/, output
+  end
 end

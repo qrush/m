@@ -15,14 +15,14 @@
 #If you're using Bundler, you'll need to include it in your Gemfile. Toss it into the `test` group:
 #
 #     group :test do
-#       gem 'm', '~> 1.2.1'
+#       gem 'm', '~> 1.3.0'
 #     end
 #
 #Developing a RubyGem? Add `m` as a development dependency.
 #
 #     Gem::Specification.new do |gem|
 #       # ...
-#       gem.add_development_dependency "m", "~> 1.2.1"
+#       gem.add_development_dependency "m", "~> 1.3.0"
 #     end
 #
 #`m` is Ruby 1.9+ only. Sorry, but `method_source`, `sourcify`, and `ruby_parser`
@@ -98,11 +98,11 @@
 ### M, your metal test runner
 # Maybe this gem should have a longer name? Metal?
 module M
-  VERSION = "1.2.1" unless defined?(VERSION)
+  VERSION = "1.3.0" unless defined?(VERSION)
 
-  # Accept arguments coming from bin/m and run tests.
+  # Accept arguments coming from bin/m and run tests, then bail out immediately.
   def self.run(argv)
-    Runner.new(argv).run
+    exit Runner.new(argv).run
   end
 
   ### Runner is in charge of running your tests.
@@ -188,13 +188,13 @@ module M
 
         # directly run the tests from here and exit with the status of the tests passing or failing
         if defined?(MiniTest)
-          exit MiniTest::Unit.runner.run test_arguments
+          MiniTest::Unit.runner.run test_arguments
         elsif defined?(Test)
-          exit Test::Unit::AutoRunner.run(false, nil, test_arguments)
+          Test::Unit::AutoRunner.run(false, nil, test_arguments)
         else
           not_supported
         end
-      else
+      elsif tests.size > 0
         # Otherwise we found no tests on this line, so you need to pick one.
         message = "No tests found on line #{@line}. Valid tests to run:\n\n"
 
@@ -204,8 +204,9 @@ module M
           message << "#{sprintf("%0#{tests.column_size}s", test.name)}: m #{@file}:#{test.start_line}\n"
         end
 
-        # fail like a good unix process should.
-        abort message
+        # Spit out helpful message and bail
+        STDERR.puts message
+        false
       end
     end
 
@@ -219,7 +220,8 @@ module M
         load @file
       rescue LoadError => e
         # Fail with a happier error message instead of spitting out a backtrace from this gem
-        abort "Failed loading test file:\n#{e.message}"
+        STDERR.puts "Failed loading test file:\n#{e.message}"
+        return []
       end
 
       # Figure out what test framework we're using
@@ -228,6 +230,7 @@ module M
       elsif defined?(Test)
         suites = Test::Unit::TestCase.test_suites
       else
+        suites = []
         not_supported
       end
 
@@ -259,7 +262,8 @@ module M
 
     # Fail loudly if this isn't supported
     def not_supported
-      abort "This test framework is not supported! Please open up an issue at https://github.com/qrush/m !"
+      STDERR.puts "This test framework is not supported! Please open up an issue at https://github.com/qrush/m !"
+      false
     end
   end
 end
