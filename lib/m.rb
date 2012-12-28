@@ -25,9 +25,7 @@
 #       gem.add_development_dependency "m", "~> 1.3.0"
 #     end
 #
-#`m` is Ruby 1.9+ only. Sorry, but `method_source`, `sourcify`, and `ruby_parser`
-#all have trouble with 1.8 so I'm giving up and only supporting 1.9 for now.
-#Patches are welcome!
+#`m` works on Ruby 1.9+ only.
 #
 ### Usage
 #
