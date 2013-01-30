@@ -138,7 +138,8 @@ module M
           require "rake/testtask"
           Rake::TestTask.new(:m_custom) do |t|
             t.libs << 'test'
-            t.pattern = "#{@file}/*test*.rb"
+            t.libs << 'spec'
+            t.test_files = FileList["#{@file}/*test*.rb", "#{@file}/*spec*.rb"]
           end
           # Invoke the rake task and exit, hopefully it'll work!
           Rake::Task['m_custom'].invoke
