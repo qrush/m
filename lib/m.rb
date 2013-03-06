@@ -100,7 +100,7 @@ module M
 
   # Accept arguments coming from bin/m and run tests, then bail out immediately.
   def self.run(argv)
-    exit Runner.new(argv).run
+    exit! Runner.new(argv).run
   end
 
   ### Runner is in charge of running your tests.
