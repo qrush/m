@@ -138,7 +138,8 @@ module M
           require "rake/testtask"
           Rake::TestTask.new(:m_custom) do |t|
             t.libs << 'test'
-            t.pattern = "#{@file}/*test*.rb"
+            t.libs << 'spec'
+            t.test_files = FileList["#{@file}/*test*.rb", "#{@file}/*spec*.rb"]
           end
           # Invoke the rake task and exit, hopefully it'll work!
           Rake::Task['m_custom'].invoke
@@ -211,7 +212,7 @@ module M
     # Finds all test suites in this test file, with test methods included.
     def suites
       # Since we're not using `ruby -Itest -Ilib` to run the tests, we need to add this directory to the `LOAD_PATH`
-      $:.unshift "./test", "./lib"
+      $:.unshift "./test", "./spec", "./lib"
 
       begin
         # Fire up this Ruby file. Let's hope it actually has tests.
