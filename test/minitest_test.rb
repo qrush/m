@@ -8,7 +8,7 @@ class MinitestTest < MTest
 
   def test_runs_entire_test_without_line_number
     output = m('examples/minitest_example_test.rb')
-    assert_output /2 tests/, output
+    assert_output /3 tests/, output
   end
 
   def test_run_inside_of_test

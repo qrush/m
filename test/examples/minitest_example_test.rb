@@ -25,4 +25,10 @@ class TestMeme < MiniTest::Unit::TestCase
     refute_match /^no/i, @meme.will_it_blend?
     refute_match /^lolz/i, @meme.will_it_blend?
   end
+
+  def test_that_kitty_can_eat_two_time
+    assert_equal "OHAI!", @meme.i_can_has_cheezburger?
+    assert_equal "OHAI!", @meme.i_can_has_cheezburger?
+  end
+
 end

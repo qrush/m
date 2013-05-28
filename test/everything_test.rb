@@ -3,7 +3,7 @@ require 'test_helper'
 class EverythingTest < MTest
   def test_runs_entire_test_suite_with_no_arguments
     output = m('')
-    assert_output /12 tests/, output
+    assert_output /13 tests/, output
   end
 
   def test_missing_file_gives_a_decent_error_message
@@ -18,7 +18,7 @@ class EverythingTest < MTest
     assert_output /3 tests/, output
 
     output = m('examples')
-    assert_output /12 tests/, output
+    assert_output /13 tests/, output
   end
 
   def test_blank_file_is_quieter
