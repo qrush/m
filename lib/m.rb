@@ -186,7 +186,7 @@ module M
         test_names = tests_to_run.map(&:name).join('|')
 
         # set up the args needed for the runner
-        test_arguments = ["-n", "/(#{test_names})/"]
+        test_arguments = ["-n", "/^(#{test_names})$/"]
 
         # directly run the tests from here and exit with the status of the tests passing or failing
         if defined?(MiniTest)
