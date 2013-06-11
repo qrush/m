@@ -209,6 +209,11 @@ module M
         # Spit out helpful message and bail
         STDERR.puts message
         false
+      else
+        # There were no tests at all
+        message = "There were no tests found.\n\n"
+        STDERR.puts message
+        false
       end
     end
 
