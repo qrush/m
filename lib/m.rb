@@ -183,7 +183,7 @@ module M
       # If we found any tests,
       if tests_to_run.size > 0
         # assemble the regexp to run these tests,
-        test_names = tests_to_run.map(&:name).join('|')
+        test_names = tests_to_run.map { |test| Regexp.escape(test.name) }.join('|')
 
         # set up the args needed for the runner
         test_arguments = ["-n", "/^(#{test_names})$/"]
