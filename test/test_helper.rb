@@ -1,3 +1,9 @@
+if ENV['TRAVIS']
+  require 'coveralls'
+
+  Coveralls.wear!
+end
+
 require './lib/m'
 require 'test/unit'
 require 'active_support/test_case'
