@@ -45,4 +45,9 @@ EOF
     output = m('examples/active_support_example_test.rb:22')
     assert_output /1 tests, 1 assertions/, output
   end
+
+  def test_run_on_test_with_unescaped_regular_express_characters
+    output = m('examples/active_support_unescaped_example_test.rb:8')
+    assert_output /1 tests, 1 assertions/, output
+  end
 end
