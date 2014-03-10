@@ -189,7 +189,9 @@ module M
         test_arguments = ["-n", "/^(#{test_names})$/"]
 
         # directly run the tests from here and exit with the status of the tests passing or failing
-        if defined?(MiniTest)
+        if defined?(Minitest) # Minitest 5
+          Minitest.run test_arguments
+        elsif defined?(MiniTest) # Minitest 4
           MiniTest::Unit.runner.run test_arguments
         elsif defined?(Test)
           Test::Unit::AutoRunner.run(false, nil, test_arguments)
@@ -232,7 +234,9 @@ module M
       end
 
       # Figure out what test framework we're using
-      if defined?(MiniTest)
+      if defined?(Minitest) # Minitest 5
+        suites = Minitest::Runnable.runnables
+      elsif defined?(MiniTest) # Minitest 4
         suites = MiniTest::Unit::TestCase.test_suites
       elsif defined?(Test)
         suites = Test::Unit::TestCase.test_suites
@@ -244,7 +248,11 @@ module M
       # Use some janky internal APIs to group test methods by test suite.
       suites.inject({}) do |suites, suite_class|
         # End up with a hash of suite class name to an array of test methods, so we can later find them and ignore empty test suites
-        suites[suite_class] = suite_class.test_methods if suite_class.test_methods.size > 0
+        if defined?(Minitest) # Minitest 5
+          suites[suite_class] = suite_class.runnable_methods if suite_class.runnable_methods.size > 0
+        else
+          suites[suite_class] = suite_class.test_methods if suite_class.test_methods.size > 0
+        end
         suites
       end
     end
