@@ -269,9 +269,9 @@ module M
         # shove a new test method into this collection.
         suites.inject(TestCollection.new) do |collection, (suite_class, test_methods)|
           test_methods.each do |test_method|
-          collection << TestMethod.create(suite_class, test_method)
-        end
-        collection
+            collection << TestMethod.create(suite_class, test_method)
+          end
+          collection
         end
       end
     end
