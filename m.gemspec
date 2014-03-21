@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "activesupport"
   gem.add_development_dependency "rdiscount"
   gem.add_development_dependency "rocco"
-  gem.add_development_dependency "minitest"
+  gem.add_development_dependency "appraisal"
 
   gem.required_ruby_version = ">= 1.9"
 

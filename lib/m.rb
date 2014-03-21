@@ -96,6 +96,7 @@
 ### M, your metal test runner
 # Maybe this gem should have a longer name? Metal?
 module M
+  require_relative 'm/frameworks'
   VERSION = "1.3.2" unless defined?(VERSION)
 
   # Accept arguments coming from bin/m and run tests, then bail out immediately.
@@ -189,9 +190,9 @@ module M
         test_arguments = ["-n", "/^(#{test_names})$/"]
 
         # directly run the tests from here and exit with the status of the tests passing or failing
-        if defined?(Minitest) # Minitest 5
+        if Frameworks.minitest5?
           Minitest.run test_arguments
-        elsif defined?(MiniTest) # Minitest 4
+        elsif Frameworks.minitest4?
           MiniTest::Unit.runner.run test_arguments
         elsif defined?(Test)
           Test::Unit::AutoRunner.run(false, nil, test_arguments)
@@ -234,9 +235,9 @@ module M
       end
 
       # Figure out what test framework we're using
-      if defined?(Minitest) # Minitest 5
+      if Frameworks.minitest5?
         suites = Minitest::Runnable.runnables
-      elsif defined?(MiniTest) # Minitest 4
+      elsif Frameworks.minitest4?
         suites = MiniTest::Unit::TestCase.test_suites
       elsif defined?(Test)
         suites = Test::Unit::TestCase.test_suites
@@ -248,7 +249,7 @@ module M
       # Use some janky internal APIs to group test methods by test suite.
       suites.inject({}) do |suites, suite_class|
         # End up with a hash of suite class name to an array of test methods, so we can later find them and ignore empty test suites
-        if defined?(Minitest) # Minitest 5
+        if Frameworks.minitest5?
           suites[suite_class] = suite_class.runnable_methods if suite_class.runnable_methods.size > 0
         else
           suites[suite_class] = suite_class.test_methods if suite_class.test_methods.size > 0
@@ -261,18 +262,18 @@ module M
     # Memoize it since it's unnecessary to do this more than one for a given file.
     def tests
       @tests ||= begin
-        require "m/test_collection"
-        require "m/test_method"
-        # With each suite and array of tests,
-        # and with each test method present in this test file,
-        # shove a new test method into this collection.
-        suites.inject(TestCollection.new) do |collection, (suite_class, test_methods)|
-          test_methods.each do |test_method|
-            collection << TestMethod.create(suite_class, test_method)
-          end
-          collection
-        end
-      end
+                   require "m/test_collection"
+                   require "m/test_method"
+                   # With each suite and array of tests,
+                   # and with each test method present in this test file,
+                   # shove a new test method into this collection.
+                   suites.inject(TestCollection.new) do |collection, (suite_class, test_methods)|
+                     test_methods.each do |test_method|
+                     collection << TestMethod.create(suite_class, test_method)
+                   end
+                   collection
+                   end
+                 end
     end
 
     # Fail loudly if this isn't supported

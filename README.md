@@ -125,6 +125,21 @@ SUPPORT
   - MiniTest::Unit::TestCase
 
 
+CONTRIBUTING
+============
+
+You can run the tests for minitest 4 with:
+
+    rake appraisal:minitest4 test
+
+and the ones for minitest 5 with:
+
+    rake appraisal:minitest5 test TEST=test/minitest_5_test.rb
+
+In the case of minitest 5 the whole suite will fail due to incompatibilities
+with ruby (at least until 2.1.1).
+
+
 LICENSE
 =======
 
