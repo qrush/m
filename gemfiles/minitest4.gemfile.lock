@@ -1,5 +1,5 @@
 PATH
-  remote: /Users/zamith/Projects/personal/m
+  remote: ../
   specs:
     m (1.3.2)
       method_source (>= 0.6.7)

@@ -95,10 +95,10 @@
 
 ### M, your metal test runner
 # Maybe this gem should have a longer name? Metal?
-module M
-  require_relative 'm/frameworks'
-  VERSION = "1.3.2" unless defined?(VERSION)
+require_relative 'version'
+require_relative 'm/frameworks'
 
+module M
   # Accept arguments coming from bin/m and run tests, then bail out immediately.
   def self.run(argv)
     # sync output since we're going to exit hard and fast
