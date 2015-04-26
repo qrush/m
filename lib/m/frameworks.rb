@@ -7,5 +7,9 @@ module M
     def self.minitest4?
       defined?(MiniTest)
     end
+
+    def self.test_unit?
+      defined?(Test)
+    end
   end
 end
