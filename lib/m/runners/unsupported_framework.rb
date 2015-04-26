@@ -6,6 +6,12 @@ module M
         not_supported
       end
 
+      def run(_test_arguments)
+        not_supported
+      end
+
+      private
+
       def not_supported
         STDERR.puts "This test framework is not supported! Please open up an issue at https://github.com/qrush/m !"
         false
