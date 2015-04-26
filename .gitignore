@@ -16,3 +16,4 @@ test/version_tmp
 tmp
 /docs
 _site
+.ruby-version
