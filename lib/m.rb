@@ -247,14 +247,14 @@ module M
       end
 
       # Use some janky internal APIs to group test methods by test suite.
-      suites.inject({}) do |suites, suite_class|
+      suites.inject({}) do |test_suites, suite_class|
         # End up with a hash of suite class name to an array of test methods, so we can later find them and ignore empty test suites
         if Frameworks.minitest5?
-          suites[suite_class] = suite_class.runnable_methods if suite_class.runnable_methods.size > 0
+          test_suites[suite_class] = suite_class.runnable_methods if suite_class.runnable_methods.size > 0
         else
-          suites[suite_class] = suite_class.test_methods if suite_class.test_methods.size > 0
+          test_suites[suite_class] = suite_class.test_methods if suite_class.test_methods.size > 0
         end
-        suites
+        test_suites
       end
     end
 
