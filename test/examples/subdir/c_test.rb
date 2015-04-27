@@ -1,6 +1,6 @@
-require 'test/unit'
+require_relative '../../test_helper'
 
-class CTest < Test::Unit::TestCase
+class CTest < MTest
   def test_c
     assert_equal 1, 1
   end

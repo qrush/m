@@ -11,6 +11,7 @@ task :default => [:test]
 Rake::TestTask.new do |t|
   t.warning = true
   t.libs << 'test'
+  t.libs << 'lib'
   t.pattern = 'test/*_test.rb'
 end
 

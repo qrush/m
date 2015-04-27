@@ -1,4 +1,5 @@
 require 'minitest/autorun'
+
 if M::Frameworks.minitest5?
   class Meme
     def i_can_has_cheezburger?
@@ -9,7 +10,6 @@ if M::Frameworks.minitest5?
       "YES!"
     end
   end
-
 
   class TestMeme < Minitest::Test
     def setup
@@ -30,6 +30,5 @@ if M::Frameworks.minitest5?
       assert_equal "OHAI!", @meme.i_can_has_cheezburger?
       assert_equal "OHAI!", @meme.i_can_has_cheezburger?
     end
-
   end
 end

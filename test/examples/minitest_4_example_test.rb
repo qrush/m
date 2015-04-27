@@ -1,6 +1,6 @@
 require 'minitest/unit'
-if M::Frameworks.minitest4?
 
+if M::Frameworks.minitest4?
   class Meme
     def i_can_has_cheezburger?
       "OHAI!"
@@ -10,7 +10,6 @@ if M::Frameworks.minitest4?
       "YES!"
     end
   end
-
 
   class TestMeme < MiniTest::Unit::TestCase
     def setup
@@ -31,6 +30,5 @@ if M::Frameworks.minitest4?
       assert_equal "OHAI!", @meme.i_can_has_cheezburger?
       assert_equal "OHAI!", @meme.i_can_has_cheezburger?
     end
-
   end
 end

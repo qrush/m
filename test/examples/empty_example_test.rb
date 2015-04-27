@@ -1,4 +1,4 @@
-require 'test/unit'
+require_relative '../test_helper'
 
-class EmptyExampleTest < Test::Unit::TestCase
+class EmptyExampleTest < MTest
 end
