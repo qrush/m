@@ -50,7 +50,7 @@ Gem::Specification.new do |gem|
 end
 ```
 
-m works on Ruby 1.9+ only.
+m works on Ruby 2.0+ only.
 
 
 USAGE
