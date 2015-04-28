@@ -2,9 +2,9 @@ rvm:
   - 2.0.0
   - 2.1.0
   - 2.2.0
-branches:
-  only:
-    - master
+install:
+  - bundle install
+  - bundle --gemfile=gemfiles/minitest5.gemfile
 script:
   - bundle exec rake
   - bundle exec rake appraisal:minitest5 test TEST=test/minitest_5_test.rb
