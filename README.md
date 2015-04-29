@@ -128,16 +128,21 @@ SUPPORT
 CONTRIBUTING
 ============
 
-You can run the tests for minitest 4 with:
+You can run all the tests with:
 
-    rake appraisal:minitest4 test
+    bundle exec rake tests
+
+You can also run tests selectively. For minitest 4 run:
+
+    appraisal minitest4 rake test
 
 and the ones for minitest 5 with:
 
-    rake appraisal:minitest5 test TEST=test/minitest_5_test.rb
+    appraisal minitest5 rake test TEST=test/minitest_5_test.rb
 
-In the case of minitest 5 the whole suite will fail due to incompatibilities
-with ruby (at least until 2.1.1).
+In the case of minitest 5, we have to specify the test to run, because running
+the whole suite will fail due to incompatibilities with ruby (at least until
+2.1.1).
 
 
 LICENSE
