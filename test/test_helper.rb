@@ -1,8 +1,5 @@
-if ENV['TRAVIS']
-  require 'coveralls'
-
-  Coveralls.wear!
-end
+require 'coveralls'
+Coveralls.wear_merged!
 
 module Testable
   def m(arguments)
@@ -26,12 +23,12 @@ if M::Frameworks.test_unit?
   class MTest < Test::Unit::TestCase
     include ::Testable
   end
-elsif M::Frameworks.minitest4?
-  class MTest < MiniTest::Unit::TestCase
+elsif M::Frameworks.minitest5?
+  class MTest < Minitest::Test
     include ::Testable
   end
 else
-  class MTest < Minitest::Test
+  class MTest < MiniTest::Unit::TestCase
     include ::Testable
   end
 end
