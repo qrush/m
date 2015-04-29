@@ -5,5 +5,6 @@ rvm:
 install:
   - bundle install
   - bundle --gemfile=gemfiles/minitest5.gemfile
+  - bundle --gemfile=gemfiles/minitest4.gemfile
 script:
   - bundle exec rake tests
