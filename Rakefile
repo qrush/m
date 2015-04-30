@@ -10,7 +10,6 @@ require "rake/testtask"
 task :default => [:test]
 
 Rake::TestTask.new do |t|
-  t.warning = true
   t.libs << 'test'
   t.libs << 'lib'
   t.pattern = 'test/*_test.rb'
@@ -25,7 +24,7 @@ end
 
 desc 'Run simple benchmarks'
 task :bench do
-  exec "ruby test/bench.rb"
+  exec "ruby test/bench.rb > benchmarks/#{Time.now.strftime('%Y%m%d')}-benchmark.log"
 end
 
 # ROCCO ===============================================================
