@@ -28,8 +28,13 @@ module M
             t.test_files = FileList["#{testable.file}/*test*.rb", "#{testable.file}/*spec*.rb"]
           end
           # Invoke the rake task and exit, hopefully it'll work!
-          Rake::Task['m_custom'].invoke
-          exit
+          begin
+            Rake::Task['m_custom'].invoke
+          rescue RuntimeError
+            exit
+          ensure
+            exit
+          end
         else
           return testable
         end

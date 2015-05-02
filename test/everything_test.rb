@@ -21,6 +21,11 @@ class EverythingTest < MTest
     assert_output(/12 tests/, output)
   end
 
+  def test_running_tests_with_failures_within_a_subdirectory
+    output = m('examples/subdir_with_failures')
+    assert_output(/1 tests, 1 assertions, 1 failures/, output)
+  end
+
   def test_blank_file_is_quieter
     output = m('bananas')
     assert(/Valid tests to run/ !~ output)
