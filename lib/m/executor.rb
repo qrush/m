@@ -53,18 +53,18 @@ module M
     # Memoize it since it's unnecessary to do this more than one for a given file.
     def tests
       @tests ||= begin
-                   require "m/test_collection"
-                   require "m/test_method"
-                   # With each suite and array of tests,
-                   # and with each test method present in this test file,
-                   # shove a new test method into this collection.
-                   suites.inject(TestCollection.new) do |collection, (suite_class, test_methods)|
-                     test_methods.each do |test_method|
-                     collection << TestMethod.create(suite_class, test_method)
-                   end
-                   collection
-                   end
-                 end
+        require "m/test_collection"
+        require "m/test_method"
+        # With each suite and array of tests,
+        # and with each test method present in this test file,
+        # shove a new test method into this collection.
+        suites.inject(TestCollection.new) do |collection, (suite_class, test_methods)|
+          test_methods.each do |test_method|
+            collection << TestMethod.create(suite_class, test_method)
+          end
+        collection
+        end
+      end
     end
 
 
@@ -75,7 +75,7 @@ module M
 
       begin
         # Fire up this Ruby file. Let's hope it actually has tests.
-        load testable.file
+        require "./#{testable.file}"
       rescue LoadError => e
         # Fail with a happier error message instead of spitting out a backtrace from this gem
         STDERR.puts "Failed loading test file:\n#{e.message}"

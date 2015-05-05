@@ -24,7 +24,9 @@ end
 
 desc 'Run simple benchmarks'
 task :bench do
-  exec "ruby test/bench.rb > benchmarks/#{Time.now.strftime('%Y%m%d')}-benchmark.log"
+  current_commit = `git rev-parse HEAD`
+  file_name = "benchmarks/#{Time.now.strftime('%Y%m%d')}-benchmark.log"
+  exec "echo -e 'Data for commit: #{current_commit}' > #{file_name} && ruby test/bench.rb >> #{file_name}"
 end
 
 # ROCCO ===============================================================

@@ -1,0 +1,28 @@
+653927eae75f5ca814e2760a64849658a8d99a1f
+
+Calculating -------------------------------------
+running m on a file that doesn't exist
+                         1.000  i/100ms
+running m on an empty file
+                         1.000  i/100ms
+running m on an entire file with minitest5
+                         1.000  i/100ms
+running m on an entire file with minitest4
+                         1.000  i/100ms
+running m on a specific test with minitest4
+                         1.000  i/100ms
+running m on a specific test with minitest5
+                         1.000  i/100ms
+-------------------------------------------------
+running m on a file that doesn't exist
+                          3.171  (± 0.0%) i/s -     16.000 
+running m on an empty file
+                          1.911  (± 0.0%) i/s -     10.000 
+running m on an entire file with minitest5
+                          0.737  (± 0.0%) i/s -      4.000  in   5.429737s
+running m on an entire file with minitest4
+                          0.757  (± 0.0%) i/s -      4.000  in   5.284200s
+running m on a specific test with minitest4
+                          0.741  (± 0.0%) i/s -      4.000  in   5.397341s
+running m on a specific test with minitest5
+                          0.741  (± 0.0%) i/s -      4.000  in   5.398335s
