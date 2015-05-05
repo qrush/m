@@ -3,7 +3,6 @@ rvm:
   - 2.1.0
   - 2.2.0
 install:
-  - bundle install
   - bundle --gemfile=gemfiles/minitest5.gemfile
   - bundle --gemfile=gemfiles/minitest4.gemfile
 script:
