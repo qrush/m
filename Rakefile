@@ -3,9 +3,9 @@ require 'rubygems'
 require 'bundler/setup'
 require 'appraisal'
 require 'coveralls'
-require "bundler/gem_tasks"
+require 'bundler/gem_tasks'
 require 'rake/clean'
-require "rake/testtask"
+require 'rake/testtask'
 
 task :default => [:test]
 

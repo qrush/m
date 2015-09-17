@@ -5,3 +5,7 @@ end
 appraise "minitest5" do
   gem 'minitest'
 end
+
+appraise "test_unit_gem" do
+  gem 'test-unit'
+end

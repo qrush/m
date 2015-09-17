@@ -1,3 +1,8 @@
+if Bundler.definition.current_dependencies.map(&:name).include?("test-unit")
+  require 'test-unit'
+end
+require 'test/unit'
+
 if M::Frameworks.test_unit?
   class TestUnitExampleTest < Test::Unit::TestCase
     def setup
