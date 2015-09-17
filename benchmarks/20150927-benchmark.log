@@ -1,0 +1,36 @@
+-e Data for commit: 6978a0778228cf1a96de0e41de0457969ddf4720
+
+Calculating -------------------------------------
+running m on a file that doesn't exist
+                         1.000  i/100ms
+running m on an empty file
+                         1.000  i/100ms
+running m on an entire file with minitest4
+                         1.000  i/100ms
+running m on an entire file with minitest5
+                         1.000  i/100ms
+running m on an entire file with test-unit gem
+                         1.000  i/100ms
+running m on a specific test with minitest4
+                         1.000  i/100ms
+running m on a specific test with minitest5
+                         1.000  i/100ms
+running m on a specific test with test-unit gem
+                         1.000  i/100ms
+-------------------------------------------------
+running m on a file that doesn't exist
+                          2.400  (± 0.0%) i/s -     13.000  in   5.417140s
+running m on an empty file
+                          1.579  (± 0.0%) i/s -      8.000 
+running m on an entire file with minitest4
+                          0.554  (± 0.0%) i/s -      3.000  in   5.419503s
+running m on an entire file with minitest5
+                          0.557  (± 0.0%) i/s -      3.000  in   5.387670s
+running m on an entire file with test-unit gem
+                          0.536  (± 0.0%) i/s -      3.000  in   5.596156s
+running m on a specific test with minitest4
+                          0.559  (± 0.0%) i/s -      3.000  in   5.367341s
+running m on a specific test with minitest5
+                          0.555  (± 0.0%) i/s -      3.000  in   5.410256s
+running m on a specific test with test-unit gem
+                          0.537  (± 0.0%) i/s -      3.000  in   5.583095s

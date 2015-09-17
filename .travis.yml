@@ -2,9 +2,11 @@ rvm:
   - 2.0.0
   - 2.1.0
   - 2.2.0
+  - jruby-1.7.21
 install:
   - bundle install
   - bundle --gemfile=gemfiles/minitest5.gemfile
   - bundle --gemfile=gemfiles/minitest4.gemfile
+  - bundle --gemfile=gemfiles/test_unit_gem.gemfile
 script:
   - bundle exec rake tests

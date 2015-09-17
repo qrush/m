@@ -85,12 +85,11 @@ module M
       suites = runner.suites
 
       # Use some janky internal APIs to group test methods by test suite.
-      suites.inject({}) do |test_suites, suite_class|
+      suites.each_with_object({}) do |suite_class, test_suites|
         # End up with a hash of suite class name to an array of test methods, so we can later find them and ignore empty test suites
         if runner.test_methods(suite_class).any?
           test_suites[suite_class] = runner.test_methods(suite_class)
         end
-        test_suites
       end
     end
 

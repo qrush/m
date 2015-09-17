@@ -1,3 +1,6 @@
+require_relative '../test_helper'
+try_loading('test-unit')
+
 if M::Frameworks.test_unit?
   class TestUnitExampleTest < Test::Unit::TestCase
     def setup

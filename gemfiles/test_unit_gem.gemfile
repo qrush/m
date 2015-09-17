@@ -3,6 +3,6 @@
 source "https://rubygems.org"
 
 gem "coveralls", :require => false, :group => :coverage
-gem "minitest"
+gem "test-unit"
 
 gemspec :path => "../"

@@ -1,5 +1,9 @@
-require 'coveralls'
-Coveralls.wear_merged!
+begin
+  require 'coveralls'
+  Coveralls.wear_merged!
+rescue LoadError
+  warn "gem 'coveralls' not available, proceeding without it"
+end
 
 module Testable
   def m(arguments)
@@ -15,10 +19,25 @@ module Testable
 end
 
 require 'm'
-require 'minitest/autorun'
+
+def try_loading(gem)
+  begin
+    require gem
+  rescue LoadError
+    return false
+  end
+end
+
+try_loading('test-unit') ||
+try_loading('minitest/autorun') ||
+try_loading('test/unit')
+
 if M::Frameworks.test_unit?
-  require 'test/unit'
-  require 'active_support/test_case'
+  begin
+    require 'test-unit'
+  rescue LoadError
+    require('active_support/test_case')
+  end
 
   class MTest < Test::Unit::TestCase
     include ::Testable

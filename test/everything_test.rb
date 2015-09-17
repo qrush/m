@@ -10,7 +10,11 @@ class EverythingTest < MTest
     output = m('examples/thisdoesnexist_test.rb')
     assert !$?.success?
     assert_match(/Failed loading test file/, output)
-    assert_match(/cannot load such file/, output)
+    if defined? JRUBY_VERSION
+      assert_match(/no such file to load/, output)
+    else
+      assert_match(/cannot load such file/, output)
+    end
   end
 
   def test_running_tests_within_a_subdirectory

@@ -3,9 +3,9 @@ require 'rubygems'
 require 'bundler/setup'
 require 'appraisal'
 require 'coveralls'
-require "bundler/gem_tasks"
+require 'bundler/gem_tasks'
 require 'rake/clean'
-require "rake/testtask"
+require 'rake/testtask'
 
 task :default => [:test]
 
@@ -17,8 +17,10 @@ end
 
 desc 'Run all tests and get merged test coverage'
 task :tests do
-  system "appraisal minitest4 rake test"
-  system "appraisal minitest5 rake test TEST=test/minitest_5_test.rb"
+  system "rake test" or exit!(1)
+  system "appraisal minitest4 rake test" or exit!(1)
+  system "appraisal minitest5 rake test TEST=test/minitest_5_test.rb" or exit!(1)
+  system "appraisal test_unit_gem rake test TEST=test/test_unit_test.rb" or exit!(1)
   Coveralls.push!
 end
 
@@ -31,9 +33,17 @@ end
 
 # ROCCO ===============================================================
 
-require 'rdiscount'
-require 'rocco/tasks'
-Rocco::make 'docs/'
+begin
+  require 'rdiscount'
+rescue LoadError => e
+  warn e.inspect
+end
+begin
+  require 'rocco/tasks'
+  Rocco::make 'docs/'
+rescue LoadError => e
+  warn e.inspect
+end
 
 desc 'Build rocco docs'
 task :docs => :rocco

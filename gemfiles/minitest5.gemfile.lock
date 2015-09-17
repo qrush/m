@@ -27,15 +27,16 @@ GEM
       domain_name (~> 0.5)
     i18n (0.6.9)
     json (1.8.2)
+    json (1.8.2-java)
     method_source (0.8.2)
     mime-types (2.5)
     minitest (5.3.1)
     multi_json (1.8.4)
-    mustache (0.99.4)
+    mustache (1.0.2)
     netrc (0.10.3)
     rake (10.1.1)
-    rdiscount (1.6.8)
-    redcarpet (3.0.0)
+    rdiscount (2.1.8)
+    redcarpet (3.3.2)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
@@ -54,9 +55,11 @@ GEM
     tins (1.5.1)
     unf (0.1.4)
       unf_ext
+    unf (0.1.4-java)
     unf_ext (0.0.7.1)
 
 PLATFORMS
+  java
   ruby
 
 DEPENDENCIES
@@ -67,3 +70,6 @@ DEPENDENCIES
   minitest
   rdiscount
   rocco
+
+BUNDLED WITH
+   1.10.6
