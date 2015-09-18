@@ -6,7 +6,7 @@ module M
         if Test::Unit::TestCase.respond_to?(:test_suites)
           Test::Unit::TestCase.test_suites
         else
-          [Test::Unit::TestCase]
+          Test::Unit::TestCase::DESCENDANTS
         end
       end
 
