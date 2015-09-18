@@ -15,13 +15,15 @@ module Testable
 end
 
 require 'm'
-require 'minitest/autorun'
+
 if Bundler.definition.current_dependencies.map(&:name).include?("test-unit")
   require 'test-unit'
+else
+  require 'minitest/autorun'
 end
-require 'test/unit'
 
 if M::Frameworks.test_unit?
+  require 'test/unit'
   require 'active_support/test_case'
 
   class MTest < Test::Unit::TestCase
