@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'coveralls', require: false
+gem 'coveralls', require: false, group: :coverage
 gem 'benchmark-ips'
 gem 'pry'
 
