@@ -19,15 +19,15 @@ module M
     private
 
     def minitest5?
-      defined?(Minitest) && Minitest::Unit::VERSION.start_with?("5")
+      self.class.minitest5?
     end
 
     def minitest4?
-      defined?(MiniTest)
+      self.class.minitest4?
     end
 
     def test_unit?
-      defined?(Test)
+      self.class.test_unit?
     end
 
     def self.minitest5?
@@ -39,7 +39,7 @@ module M
     end
 
     def self.test_unit?
-      defined?(Test)
+      defined?(Test::Unit)
     end
   end
 end
