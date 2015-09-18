@@ -1,5 +1,9 @@
-require 'coveralls'
-Coveralls.wear_merged!
+begin
+  require 'coveralls'
+  Coveralls.wear_merged!
+rescue LoadError
+  warn "gem 'coveralls' not available, proceeding without it"
+end
 
 module Testable
   def m(arguments)
