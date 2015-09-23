@@ -6,7 +6,9 @@ module M
       end
 
       def run(test_arguments)
-        Minitest.run test_arguments
+        output = Minitest.run test_arguments
+        ::Minitest.class_variable_get(:@@after_run).reverse_each(&:call)
+        output
       end
 
       def test_methods(suite_class)

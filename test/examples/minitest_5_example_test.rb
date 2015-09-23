@@ -31,4 +31,6 @@ if M::Frameworks.minitest5?
       assert_equal "OHAI!", @meme.i_can_has_cheezburger?
     end
   end
+
+  Minitest.after_run { p "ran after run block" }
 end

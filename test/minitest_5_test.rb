@@ -34,5 +34,11 @@ if M::Frameworks.minitest5?
       assert_match %r{    test_that_kitty_can_eat: m examples/minitest_5_example_test\.rb:19}, output
       assert_match %r{test_that_it_will_not_blend: m examples/minitest_5_example_test\.rb:23}, output
     end
+
+    def test_run_with_after_run_block
+      output = m('examples/minitest_5_example_test.rb')
+
+      assert_output(/ran after run block/, output)
+    end
   end
 end
