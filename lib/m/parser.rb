@@ -25,7 +25,7 @@ module M
           Rake::TestTask.new(:m_custom) do |t|
             t.libs << 'test'
             t.libs << 'spec'
-            t.test_files = FileList["#{testable.file}/*test*.rb", "#{testable.file}/*spec*.rb"]
+            t.test_files = FileList[wildcard("test"), wildcard("spec")]
           end
           # Invoke the rake task and exit, hopefully it'll work!
           begin
@@ -67,7 +67,20 @@ module M
           testable.line = line
         end
 
+        opts.on '-r', '--recursive DIR', 'Search provided directory recursively.' do |directory|
+          testable.recursive = true
+          argv << directory
+        end
+
         opts.parse! argv
+      end
+    end
+
+    def wildcard(type)
+      if testable.recursive
+        "#{testable.file}/**/*#{type}*.rb"
+      else
+        "#{testable.file}/*#{type}*.rb"
       end
     end
   end
