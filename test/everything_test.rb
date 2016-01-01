@@ -25,9 +25,9 @@ class EverythingTest < MTest
     assert_output(/12 tests/, output)
   end
 
-  def test_running_tests_recursively_within_a_directory
-    output = m('-r examples')
-    assert_output(/15 tests/, output)
+  def test_running_tests_recursively
+    output = m('-r examples/subdir')
+    assert_output(/5 tests/, output)
   end
 
   def test_running_tests_with_failures_within_a_subdirectory

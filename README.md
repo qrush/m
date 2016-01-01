@@ -114,6 +114,18 @@ Want to run the whole test? Just leave off the line number.
 
     1 tests, 2 assertions, 0 failures, 0 errors, 0 skips
 
+If you want to run all the tests in a directory as well as its subdirectories, use the `-r` flag: 
+
+    $ m -r test/models
+    "Searching provided directory for tests recursively"
+    Run options: 
+
+    ..
+
+    Finished in 3.459902s, 45.0880 runs/s, 87.5747 assertions/s.
+
+    156 tests, 303 assertions, 0 failures, 0 errors, 13 skips
+
 
 SUPPORT
 =======

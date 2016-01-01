@@ -12,9 +12,5 @@ module M
     def line=(line)
       @line ||= line.to_i
     end
-
-    def recursive?
-      recursive == true
-    end
   end
 end

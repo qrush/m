@@ -77,7 +77,11 @@ module M
     end
 
     def wildcard(type)
-      "#{testable.file}/" + (testable.recursive? ? "**/*#{type}*.rb" : "*#{type}*.rb")
+      if testable.recursive
+        "#{testable.file}/**/*#{type}*.rb"
+      else
+        "#{testable.file}/*#{type}*.rb"
+      end
     end
   end
 end
