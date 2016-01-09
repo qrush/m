@@ -68,7 +68,6 @@ module M
         end
 
         opts.on '-r', 'Search provided directory recursively.' do |line|
-          p "Searching provided directory for tests recursively"
           testable.recursive = true
         end
 
