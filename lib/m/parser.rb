@@ -67,8 +67,9 @@ module M
           testable.line = line
         end
 
-        opts.on '-r', 'Search provided directory recursively.' do |line|
+        opts.on '-r', '--recursive DIR', 'Search provided directory recursively.' do |directory|
           testable.recursive = true
+          argv << directory
         end
 
         opts.parse! argv

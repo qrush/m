@@ -30,4 +30,14 @@ class OptionsTest < MTest
     output = m('--line 20 examples/minitest_4_example_test.rb:2')
     assert_output(/1 tests, 1 assertions/, output)
   end
+
+  def test_recursive_option
+    output = m('-r examples/subdir')
+    assert_output(/5 tests/, output)
+  end
+
+  def test_recursive_option_without_directory_arg_fails
+    output = m('-r')
+    assert_match(/OptionParser::MissingArgument/, output)
+  end
 end
