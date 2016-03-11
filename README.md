@@ -36,7 +36,7 @@ If you’re using Bundler, you’ll need to include it in your Gemfile. Toss it 
 
 ``` ruby
 group :test do
-  gem 'm', '~> 1.3.1'
+  gem 'm', '~> 1.4.2'
 end
 ```
 
@@ -46,7 +46,7 @@ Developing a RubyGem? Add m as a development dependency.
 ``` ruby
 Gem::Specification.new do |gem|
   # ...
-  gem.add_development_dependency "m", "~> 1.3.1"
+  gem.add_development_dependency "m", "~> 1.4.2"
 end
 ```
 
@@ -114,11 +114,11 @@ Want to run the whole test? Just leave off the line number.
 
     1 tests, 2 assertions, 0 failures, 0 errors, 0 skips
 
-If you want to run all the tests in a directory as well as its subdirectories, use the `-r` flag: 
+If you want to run all the tests in a directory as well as its subdirectories, use the `-r` flag:
 
     $ m -r test/models
     "Searching provided directory for tests recursively"
-    Run options: 
+    Run options:
 
     ..
 
