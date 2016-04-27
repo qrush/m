@@ -31,9 +31,9 @@ module M
           begin
             Rake::Task['m_custom'].invoke
           rescue RuntimeError
-            exit
+            exit(1)
           ensure
-            exit
+            exit($?.exitstatus)
           end
         else
           return testable

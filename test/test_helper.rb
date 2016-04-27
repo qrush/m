@@ -16,6 +16,11 @@ module Testable
     assert $?.success?, "Execution failed, output:\n\n#{output}"
     assert_match regexp, output
   end
+
+  def assert_output_for_failed_execution(regexp, output)
+    refute $?.success?, "Execution did not fail, but it should"
+    assert_match regexp, output
+  end
 end
 
 require 'm'
