@@ -36,7 +36,7 @@ If you’re using Bundler, you’ll need to include it in your Gemfile. Toss it 
 
 ``` ruby
 group :test do
-  gem 'm', '~> 1.4.2'
+  gem 'm', '~> 1.5.0'
 end
 ```
 
@@ -46,7 +46,7 @@ Developing a RubyGem? Add m as a development dependency.
 ``` ruby
 Gem::Specification.new do |gem|
   # ...
-  gem.add_development_dependency "m", "~> 1.4.2"
+  gem.add_development_dependency "m", "~> 1.5.0"
 end
 ```
 
