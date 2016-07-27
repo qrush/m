@@ -12,7 +12,7 @@ module M
 
     def execute
       # Locate tests to run that may be inside of this line. There could be more than one!
-      tests_to_run = tests.within(testable.line)
+      tests_to_run = tests.within(testable.lines)
 
       # If we found any tests,
       if tests_to_run.size > 0
@@ -26,7 +26,7 @@ module M
         runner.run(test_arguments)
       elsif tests.size > 0
         # Otherwise we found no tests on this line, so you need to pick one.
-        message = "No tests found on line #{testable.line}. Valid tests to run:\n\n"
+        message = "No tests found on line #{testable.lines.join(', ')}. Valid tests to run:\n\n"
 
         # For every test ordered by line number,
         # spit out the test name and line number where it starts,

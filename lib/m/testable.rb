@@ -1,16 +1,16 @@
 module M
   class Testable
     attr_accessor :file, :recursive
-    attr_reader :line
+    attr_reader :lines
 
-    def initialize(file = "", line = nil, recursive = false)
+    def initialize(file = "", lines = [], recursive = false)
       @file = file
-      @line = line
       @recursive = recursive
+      self.lines = lines
     end
 
-    def line=(line)
-      @line ||= line.to_i
+    def lines=(lines)
+      @lines = lines.map(&:to_i)
     end
   end
 end
