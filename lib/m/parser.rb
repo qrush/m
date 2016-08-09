@@ -26,6 +26,7 @@ module M
             t.libs << 'test'
             t.libs << 'spec'
             t.test_files = FileList[wildcard("test"), wildcard("spec")]
+            t.warning = false
           end
           # Invoke the rake task and exit, hopefully it'll work!
           begin
