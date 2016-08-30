@@ -72,6 +72,7 @@ module M
     def suites
       # Since we're not using `ruby -Itest -Ilib` to run the tests, we need to add this directory to the `LOAD_PATH`
       $:.unshift "./test", "./spec", "./lib"
+      $:.unshift(*testable.libs)
 
       begin
         # Fire up this Ruby file. Let's hope it actually has tests.

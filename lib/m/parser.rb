@@ -25,6 +25,8 @@ module M
           Rake::TestTask.new(:m_custom) do |t|
             t.libs << 'test'
             t.libs << 'spec'
+            t.libs << 'lib'
+            t.libs.concat testable.libs
             t.test_files = FileList[wildcard("test"), wildcard("spec")]
             t.warning = false
           end
@@ -71,6 +73,10 @@ module M
         opts.on '-r', '--recursive DIR', 'Search provided directory recursively.' do |directory|
           testable.recursive = true
           argv << directory
+        end
+
+        opts.on '-I', '--include LIBS', 'Include the given libraries in the LOAD_PATH when running the tests' do |libs_string|
+          testable.libs = libs_string.split(":")
         end
 
         opts.parse! argv
