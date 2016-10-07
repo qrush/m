@@ -15,8 +15,10 @@ module M
       else
         parse_options! argv
 
-        # Parse out ARGV, it should be coming in in a format like `test/test_file.rb:9`
-        testable.file, testable.line = argv.first.split(':')
+        # Parse out ARGV, it should be coming in in a format like `test/test_file.rb:9:19`
+        parsed = argv.first.split(':')
+        testable.file = parsed.shift
+        testable.lines = parsed if testable.lines.none?
 
         # If this file is a directory, not a file, run the tests inside of this directory
         if Dir.exist?(testable.file)
@@ -65,7 +67,7 @@ module M
 
         opts.on '-l', '--line LINE', Integer, 'Line number for file.' do |line|
           p "parsing line #{line}"
-          testable.line = line
+          testable.lines = [line]
         end
 
         opts.on '-r', '--recursive DIR', 'Search provided directory recursively.' do |directory|

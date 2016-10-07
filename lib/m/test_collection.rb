@@ -17,13 +17,12 @@ module M
 
     # Slice out tests that may be within the given line.
     # Returns a new TestCollection with the results.
-    def within(line)
+    def within(lines)
       # Into a new collection, filter only the tests that...
-      self.class.new(select do |test|
-        # are within the given boundary for this method
-        # or include everything if the line given is zero (no line)
-        line.zero? || (test.start_line..test.end_line).include?(line)
-      end)
+      collection = select do |test|
+        lines.none? || lines.any? { |line| (test.start_line..test.end_line).include?(line) }
+      end
+      self.class.new(collection)
     end
 
     # Used to line up method names in `#sprintf` when `m` aborts
