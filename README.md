@@ -16,11 +16,11 @@ M.RB
     ________________________________________________________________________________
 
 
-  - [![Gem Version](https://badge.fury.io/rb/m.png)](https://rubygems.org/gems/m)
-  - [![Code Climate](https://codeclimate.com/github/qrush/m.png)](https://codeclimate.com/github/qrush/m)
-  - [![Build Status](https://travis-ci.org/qrush/m.png)](https://travis-ci.org/qrush/m)
-  - [![Dependency Status](https://gemnasium.com/qrush/m.png)](https://gemnasium.com/qrush/m)
-  - [![Coverage Status](https://coveralls.io/repos/qrush/m/badge.png?branch=master)](https://coveralls.io/r/qrush/m)
+  - [![Gem Version](https://badge.fury.io/rb/m.svg)](https://rubygems.org/gems/m)
+  - [![Code Climate](https://codeclimate.com/github/qrush/m.svg)](https://codeclimate.com/github/qrush/m)
+  - [![Build Status](https://travis-ci.org/qrush/m.svg)](https://travis-ci.org/qrush/m)
+  - [![Dependency Status](https://gemnasium.com/qrush/m.svg)](https://gemnasium.com/qrush/m)
+  - [![Coverage Status](https://coveralls.io/repos/qrush/m/badge.svg?branch=master)](https://coveralls.io/r/qrush/m)
 
 
 INSTALL
