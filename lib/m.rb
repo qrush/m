@@ -1,6 +1,6 @@
 ### M, your metal test runner
 # Maybe this gem should have a longer name? Metal?
-require_relative 'version'
+require_relative 'm/version'
 require_relative 'm/frameworks'
 require_relative 'm/runner'
 
