@@ -10,6 +10,8 @@ module M
     # sync output since we're going to exit hard and fast
     $stdout.sync = true
     $stderr.sync = true
-    exit! Runner.new(argv).run
+    r = Runner.new(argv).run
+    ::Minitest.class_variable_get(:@@after_run).reverse_each(&:call)
+    exit! r
   end
 end
