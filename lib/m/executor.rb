@@ -23,7 +23,7 @@ module M
         test_arguments = ["-n", "/^(#{test_names})$/"]
 
         # directly run the tests from here and exit with the status of the tests passing or failing
-        runner.run(test_arguments)
+        runner.run(test_arguments + testable.passthrough_options)
       elsif tests.size > 0
         # Otherwise we found no tests on this line, so you need to pick one.
         message = "No tests found on line #{testable.lines.join(', ')}. Valid tests to run:\n\n"

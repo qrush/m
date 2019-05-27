@@ -15,10 +15,17 @@ module M
       else
         parse_options! argv
 
-        # Parse out ARGV, it should be coming in in a format like `test/test_file.rb:9:19`
-        parsed = argv.first.split(':')
-        testable.file = parsed.shift
-        testable.lines = parsed if testable.lines.none?
+        if argv.first.start_with?("--")
+          exec "rake test #{argv.join}"
+          exit 0
+        else
+          # Parse out ARGV, it should be coming in in a format like `test/test_file.rb:9:19`
+          parsed = argv.shift.split(':')
+          testable.file = parsed.shift
+          testable.lines = parsed if testable.lines.none?
+          # Anything else on ARGV will be passed along to the runner
+          testable.passthrough_options = argv
+        end
 
         # If this file is a directory, not a file, run the tests inside of this directory
         if Dir.exist?(testable.file)

@@ -40,4 +40,19 @@ class OptionsTest < MTest
     output = m('-r')
     assert_match(/OptionParser::MissingArgument/, output)
   end
+
+  def test_passthrough_options
+    output = m('-- --verbose')
+    assert_output(/0 errors/, output)
+  end
+
+  def test_passthrough_options_with_file
+    output = m('examples/minitest_4_example_test.rb -- --verbose')
+    assert_output(/3 tests, 9 assertions/, output)
+  end
+
+  def test_passthrough_options_with_file_and_other_options
+    output = m('--line 20 examples/minitest_4_example_test.rb -- --verbose')
+    assert_output(/1 tests, 1 assertions/, output)
+  end
 end
