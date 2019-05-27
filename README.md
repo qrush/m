@@ -109,6 +109,19 @@ If you want to run all the tests in a directory as well as its subdirectories, u
     Finished in 3.459902s, 45.0880 runs/s, 87.5747 assertions/s.
 
     156 tests, 303 assertions, 0 failures, 0 errors, 13 skips
+    
+If you need to pass some option down to the actual runner, that is also supported:
+
+    $ m test/models -- --seed 1234
+    Run options: --seed 1234
+
+    ..
+
+    Finished in 3.459902s, 45.0880 runs/s, 87.5747 assertions/s.
+
+    156 tests, 303 assertions, 0 failures, 0 errors, 13 skips
+    
+Ensure that you use the `--` before the options, otherwise you'll get an invalid option error. Also, these extra option should always be the last argument.
 
 
 SUPPORT
@@ -119,6 +132,7 @@ SUPPORT
   - Test::Unit
   - ActiveSupport::TestCase
   - MiniTest::Unit::TestCase
+  - Minitest
 
 
 CONTRIBUTING
