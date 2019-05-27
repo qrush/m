@@ -34,7 +34,7 @@ Gem::Specification.new do |gem|
 end
 ```
 
-m works on Ruby 2.0+ only.
+m works on Ruby 2.0+ only and support is only provided for [versions currently maintained by the community](https://www.ruby-lang.org/en/downloads/branches/).
 
 
 USAGE
