@@ -37,7 +37,7 @@ GEM
     mustache (1.0.2)
     rake (10.4.2)
     rdiscount (2.1.8)
-    redcarpet (3.3.2)
+    redcarpet (3.5.1)
     rocco (0.8.2)
       mustache
       redcarpet
