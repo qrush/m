@@ -1,9 +1,9 @@
 appraise "minitest4" do
-  gem 'minitest', '4.7.5'
+  gem 'minitest', '~> 4'
 end
 
 appraise "minitest5" do
-  gem 'minitest'
+  gem 'minitest', '~> 5'
 end
 
 appraise "test_unit_gem" do
