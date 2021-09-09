@@ -109,7 +109,7 @@ If you want to run all the tests in a directory as well as its subdirectories, u
     Finished in 3.459902s, 45.0880 runs/s, 87.5747 assertions/s.
 
     156 tests, 303 assertions, 0 failures, 0 errors, 13 skips
-    
+
 If you need to pass some option down to the actual runner, that is also supported:
 
     $ m test/models -- --seed 1234
@@ -120,7 +120,7 @@ If you need to pass some option down to the actual runner, that is also supporte
     Finished in 3.459902s, 45.0880 runs/s, 87.5747 assertions/s.
 
     156 tests, 303 assertions, 0 failures, 0 errors, 13 skips
-    
+
 Ensure that you use the `--` before the options, otherwise you'll get an invalid option error. Also, these extra option should always be the last argument.
 
 
@@ -138,6 +138,17 @@ SUPPORT
 CONTRIBUTING
 ============
 
+## Setup
+
+This project uses [Appraisal](https://github.com/thoughtbot/appraisal) to test against different versions of dependencies.
+
+To install all scenarios (appraisals):
+
+    bundle install
+    bundle exec appraisal install
+
+## Testing
+
 You can run all the tests with:
 
     bundle exec rake tests
@@ -148,11 +159,7 @@ You can also run tests selectively. For minitest 4 run:
 
 and the ones for minitest 5 with:
 
-    appraisal minitest5 rake test TEST=test/minitest_5_test.rb
-
-In the case of minitest 5, we have to specify the test to run, because running
-the whole suite will fail due to incompatibilities with ruby (at least until
-2.1.1).
+    appraisal minitest5 rake test
 
 
 LICENSE

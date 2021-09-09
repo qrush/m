@@ -1,14 +1,19 @@
+language: ruby
 rvm:
-  - 2.4.0
-  - 2.5.0
-  - 2.6.0
+  - 2.4
+  - 2.5
+  - 2.6
+  - 2.7
+  - 3.0
   - jruby-9.2
 before_install:
+  - yes | gem update --system --force
   - gem install bundler
+gemfile:
+  - gemfiles/minitest4.gemfile
+  - gemfiles/minitest5.gemfile
+  - gemfiles/test_unit_gem.gemfile
 install:
   - bundle install
-  - bundle --gemfile=gemfiles/minitest5.gemfile
-  - bundle --gemfile=gemfiles/minitest4.gemfile
-  - bundle --gemfile=gemfiles/test_unit_gem.gemfile
 script:
-  - bundle exec rake tests
+  - bundle exec rake test

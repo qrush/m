@@ -30,12 +30,16 @@ module M
       self.class.test_unit?
     end
 
+    def self.minitest_version_major
+      defined?(Minitest) ? Minitest::Unit::VERSION.slice(/\d+/) : nil
+    end
+
     def self.minitest5?
-      defined?(Minitest) && Minitest::Unit::VERSION.start_with?("5")
+      minitest_version_major == "5"
     end
 
     def self.minitest4?
-      defined?(MiniTest)
+      minitest_version_major == "4"
     end
 
     def self.test_unit?
