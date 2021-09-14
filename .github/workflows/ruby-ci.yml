@@ -21,7 +21,6 @@ jobs:
           - ruby-2.6
           - ruby-2.7
           - ruby-3.0
-          - jruby
           - truffleruby
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.appraisal }}.gemfile
