@@ -2,6 +2,9 @@ module M
   module Runners
     class Minitest5 < Base
       def suites
+        if Minitest.respond_to?(:seed)
+          Minitest.seed = (ENV["SEED"] || srand).to_i % 0xFFFF
+        end
         Minitest::Runnable.runnables
       end
 
