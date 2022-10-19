@@ -4,6 +4,7 @@ Gem::Specification.new do |gem|
   gem.authors = ["Nick Quaranto"]
   gem.email = ["nick@quaran.to"]
   gem.homepage = "https://github.com/qrush/m"
+  gem.license = "MIT"
 
   gem.executables = `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
   gem.files = `git ls-files`.split "\n"
