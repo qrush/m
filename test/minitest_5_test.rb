@@ -1,33 +1,33 @@
-require 'test_helper'
+require "test_helper"
 if M::Frameworks.minitest5?
   class Minitest5Test < MTest
     def test_run_simple_test_by_line_number
-      output = m('examples/minitest_5_example_test.rb:19')
+      output = m "examples/minitest_5_example_test.rb:19"
       assert_output(/1 runs, 1 assertions/, output)
     end
 
     def test_runs_entire_test_without_line_number
-      output = m('examples/minitest_5_example_test.rb')
+      output = m "examples/minitest_5_example_test.rb"
       assert_output(/3 runs/, output)
     end
 
     def test_run_inside_of_test
-      output = m('examples/minitest_5_example_test.rb:20')
+      output = m "examples/minitest_5_example_test.rb:20"
       assert_output(/1 runs, 1 assertions/, output)
     end
 
     def test_run_on_end_of_test
-      output = m('examples/minitest_5_example_test.rb:21')
+      output = m "examples/minitest_5_example_test.rb:21"
       assert_output(/1 runs, 1 assertions/, output)
     end
 
     def test_run_inside_big_test
-      output = m('examples/minitest_5_example_test.rb:26')
+      output = m "examples/minitest_5_example_test.rb:26"
       assert_output(/1 runs, 6 assertions/, output)
     end
 
     def test_run_on_blank_line
-      output = m('examples/minitest_5_example_test.rb:3')
+      output = m "examples/minitest_5_example_test.rb:3"
 
       assert !$?.success?
       assert_match(/No tests found on line 3. Valid tests to run:/, output)
@@ -36,7 +36,7 @@ if M::Frameworks.minitest5?
     end
 
     def test_run_with_after_run_block
-      output = m('examples/minitest_5_example_test.rb')
+      output = m "examples/minitest_5_example_test.rb"
 
       assert_output(/ran after run block/, output)
     end

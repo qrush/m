@@ -1,6 +1,6 @@
 require "rake/testtask"
 
 Rake::TestTask.new do |t|
-  t.libs << '.'
-  t.pattern = 'examples/*_test.rb'
+  t.libs << "."
+  t.pattern = "examples/*_test.rb"
 end

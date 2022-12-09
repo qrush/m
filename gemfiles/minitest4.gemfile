@@ -2,9 +2,9 @@
 
 source "https://rubygems.org"
 
-gem "coveralls", require: false
-gem "benchmark-ips"
 gem "allocation_stats"
+gem "benchmark-ips"
+gem "coveralls", require: false
 gem "minitest", "~> 4"
 
 gemspec path: "../"

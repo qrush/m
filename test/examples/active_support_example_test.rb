@@ -1,10 +1,7 @@
-require 'active_support'
-require 'active_support/test_case'
+require "active_support"
+require "active_support/test_case"
 
 class ActiveSupportExampleTest < ActiveSupport::TestCase
-  setup do
-  end
-
   def test_normal
     assert_equal 1, 1
   end

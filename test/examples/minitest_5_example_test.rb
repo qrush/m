@@ -1,4 +1,4 @@
-require 'minitest/autorun'
+require "minitest/autorun"
 
 if M::Frameworks.minitest5?
   class Meme

@@ -1,5 +1,21 @@
 module M
   class Frameworks
+    def self.minitest_version_major
+      defined?(Minitest) ? Minitest::Unit::VERSION.slice(/\d+/) : nil
+    end
+
+    def self.minitest5?
+      minitest_version_major == "5"
+    end
+
+    def self.minitest4?
+      minitest_version_major == "4"
+    end
+
+    def self.test_unit?
+      defined?(Test::Unit)
+    end
+
     def self.framework_runner
       new.framework_runner
     end
@@ -28,22 +44,6 @@ module M
 
     def test_unit?
       self.class.test_unit?
-    end
-
-    def self.minitest_version_major
-      defined?(Minitest) ? Minitest::Unit::VERSION.slice(/\d+/) : nil
-    end
-
-    def self.minitest5?
-      minitest_version_major == "5"
-    end
-
-    def self.minitest4?
-      minitest_version_major == "4"
-    end
-
-    def self.test_unit?
-      defined?(Test::Unit)
     end
   end
 end

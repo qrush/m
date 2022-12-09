@@ -1,4 +1,4 @@
-require 'minitest/unit'
+require "minitest/unit"
 
 class Meme
   def i_can_has_cheezburger?
@@ -32,5 +32,5 @@ class TestMeme < Test
     assert_equal "OHAI!", @meme.i_can_has_cheezburger?
   end
 
-  Minitest.after_run { p "ran after run block" } if Minitest.respond_to?(:after_run)
+  Minitest.after_run { p "ran after run block" } if Minitest.respond_to? :after_run
 end
