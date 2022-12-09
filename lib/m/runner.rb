@@ -1,11 +1,11 @@
-require_relative 'parser'
-require_relative 'executor'
+require_relative "parser"
+require_relative "executor"
 
 ### Runners are in charge of running your tests, depending on the framework
 # Instead of slamming all of this junk in an `M` class, it's here instead.
 module M
   class Runner
-    def initialize(argv)
+    def initialize argv
       @argv = argv
     end
 

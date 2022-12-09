@@ -1,4 +1,4 @@
-require 'minitest/unit'
+require "minitest/unit"
 
 if M::Frameworks.minitest4?
   class Meme
