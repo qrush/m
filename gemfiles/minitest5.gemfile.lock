@@ -15,10 +15,6 @@ GEM
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
     allocation_stats (0.1.5)
-    appraisal (2.4.1)
-      bundler
-      rake
-      thor (>= 0.14.0)
     benchmark-ips (2.9.1)
     concurrent-ruby (1.1.9)
     coveralls (0.8.23)
@@ -61,7 +57,6 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   allocation_stats
-  appraisal
   benchmark-ips
   coveralls
   m!

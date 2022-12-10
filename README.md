@@ -138,15 +138,6 @@ SUPPORT
 CONTRIBUTING
 ============
 
-## Setup
-
-This project uses [Appraisal](https://github.com/thoughtbot/appraisal) to test against different versions of dependencies.
-
-To install all scenarios (appraisals):
-
-    bundle install
-    bundle exec appraisal install
-
 ## Testing
 
 You can run all the tests with:
@@ -155,11 +146,11 @@ You can run all the tests with:
 
 You can also run tests selectively. For minitest 4 run:
 
-    appraisal minitest4 rake test
+    bundle exec rake test:minitest4
 
 and the ones for minitest 5 with:
 
-    appraisal minitest5 rake test
+    bundle exec rake test:minitest5
 
 
 LICENSE
