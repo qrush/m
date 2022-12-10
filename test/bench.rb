@@ -1,4 +1,4 @@
-require 'benchmark/ips'
+require "benchmark/ips"
 
 Benchmark.ips do |bench|
   bench.report("running m on a file that doesn't exist") do

@@ -11,18 +11,18 @@ module M
     # internal collection
     def_delegators :@collection, :size, :<<, :each
 
-    def initialize(collection = nil)
+    def initialize collection = nil
       @collection = collection || []
     end
 
     # Slice out tests that may be within the given line.
     # Returns a new TestCollection with the results.
-    def within(lines)
+    def within lines
       # Into a new collection, filter only the tests that...
       collection = select do |test|
-        lines.none? || lines.any? { |line| (test.start_line..test.end_line).include?(line) }
+        lines.none? || lines.any? { |line| (test.start_line..test.end_line).cover?(line) }
       end
-      self.class.new(collection)
+      self.class.new collection
     end
 
     # Used to line up method names in `#sprintf` when `m` aborts
@@ -33,7 +33,7 @@ module M
     end
 
     # Be considerate when printing out tests and pre-sort them by line number
-    def by_line_number(&block)
+    def by_line_number &block
       # On each member of the collection, sort by line number and yield
       # the block into the sorted collection
       sort_by(&:start_line).each(&block)

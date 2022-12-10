@@ -5,7 +5,7 @@ module M
         MiniTest::Unit::TestCase.test_suites
       end
 
-      def run(test_arguments)
+      def run test_arguments
         MiniTest::Unit.runner.run test_arguments
       end
     end

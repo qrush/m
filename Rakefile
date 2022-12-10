@@ -1,19 +1,21 @@
 #!/usr/bin/env rake
-require 'rubygems'
-require 'bundler/setup'
-require 'coveralls'
-require 'bundler/gem_tasks'
-require 'rake/clean'
-require 'rake/testtask'
+require "rubygems"
+require "bundler/setup"
+require "coveralls"
+require "bundler/gem_tasks"
+require "rake/clean"
+require "rake/testtask"
+require "standard/rake"
 
-task :default => [:test]
+task default: [:test, :standard]
 
 Rake::TestTask.new do |t|
-  t.libs << 'test'
-  t.libs << 'lib'
-  t.pattern = 'test/*_test.rb'
+  t.libs << "test"
+  t.libs << "lib"
+  t.pattern = "test/*_test.rb"
 end
 
+desc "Run all tests and get merged test coverage"
 namespace :test do
   Dir.glob("gemfiles/*.gemfile").each do |gemfile_path|
     name = /gemfiles\/(.*).gemfile/.match(gemfile_path)[1]
@@ -38,9 +40,9 @@ task :tests do
   Coveralls.push!
 end
 
-desc 'Run simple benchmarks'
+desc "Run simple benchmarks"
 task :bench do
   current_commit = `git rev-parse HEAD`
-  file_name = "benchmarks/#{Time.now.strftime('%Y%m%d')}-benchmark.log"
+  file_name = "benchmarks/#{Time.now.strftime "%Y%m%d"}-benchmark.log"
   exec "echo -e 'Data for commit: #{current_commit}' > #{file_name} && ruby test/bench.rb >> #{file_name}"
 end

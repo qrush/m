@@ -1,10 +1,8 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-gem 'coveralls', require: false
-gem 'benchmark-ips'
+gem "benchmark-ips"
+gem "coveralls", require: false
 
-if RUBY_VERSION !~ /^2.0/ && !defined?(JRUBY_VERSION)
-  gem 'allocation_stats'
-end
+gem "allocation_stats" if RUBY_VERSION !~ /^2.0/ && !defined?(JRUBY_VERSION)
 
 gemspec
