@@ -12,7 +12,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version = M::VERSION
 
-  gem.add_runtime_dependency "method_source", ">= 0.6.7"
   gem.add_runtime_dependency "rake", ">= 0.9.2.2"
 
   gem.add_development_dependency "activesupport"
