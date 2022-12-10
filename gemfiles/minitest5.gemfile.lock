@@ -19,6 +19,7 @@ GEM
       bundler
       rake
       thor (>= 0.14.0)
+    ast (2.4.2)
     benchmark-ips (2.9.1)
     concurrent-ruby (1.1.9)
     coveralls (0.8.23)
@@ -31,20 +32,47 @@ GEM
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     json (2.5.1)
+    language_server-protocol (3.17.0.2)
     method_source (1.0.0)
     minitest (5.14.4)
     mustache (1.1.1)
+    parallel (1.22.1)
+    parser (3.1.3.0)
+      ast (~> 2.4.1)
+    rainbow (3.1.1)
     rake (13.0.6)
     rdiscount (2.2.0.2)
     redcarpet (3.5.1)
+    regexp_parser (2.6.1)
+    rexml (3.2.5)
     rocco (0.8.2)
       mustache
       redcarpet
+    rubocop (1.39.0)
+      json (~> 2.3)
+      parallel (~> 1.10)
+      parser (>= 3.1.2.1)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml (>= 3.2.5, < 4.0)
+      rubocop-ast (>= 1.23.0, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.24.0)
+      parser (>= 3.1.1.0)
+    rubocop-performance (1.15.1)
+      rubocop (>= 1.7.0, < 2.0)
+      rubocop-ast (>= 0.4.0)
+    ruby-progressbar (1.11.0)
     simplecov (0.16.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
+    standard (1.19.1)
+      language_server-protocol (~> 3.17.0.2)
+      rubocop (= 1.39.0)
+      rubocop-performance (= 1.15.1)
     sync (0.5.0)
     term-ansicolor (1.7.1)
       tins (~> 1.0)
@@ -53,6 +81,7 @@ GEM
       sync
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (2.3.0)
     zeitwerk (2.4.2)
 
 PLATFORMS
@@ -68,6 +97,7 @@ DEPENDENCIES
   minitest (~> 5)
   rdiscount
   rocco
+  standard
 
 BUNDLED WITH
-   2.2.26
+   2.3.26
