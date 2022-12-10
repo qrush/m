@@ -129,10 +129,11 @@ SUPPORT
 
 `m` works with a few Ruby test frameworks:
 
-  - Test::Unit
-  - ActiveSupport::TestCase
+  - Minitest::Test
+  - Minitest::Spec
   - MiniTest::Unit::TestCase
-  - Minitest
+  - ActiveSupport::TestCase
+  - Test::Unit
 
 
 CONTRIBUTING
