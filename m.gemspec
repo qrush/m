@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "activesupport"
   gem.add_development_dependency "standard"
 
-  gem.required_ruby_version = ">= 1.9"
+  gem.required_ruby_version = ">= 2.7"
 
   gem.summary = gem.description = "Run test/unit tests by line number. Metal!"
   gem.metadata["rubygems_mfa_required"] = "true"
