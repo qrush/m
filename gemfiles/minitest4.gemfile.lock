@@ -34,13 +34,7 @@ GEM
     method_source (1.0.0)
     minitest (4.7.5)
     multi_json (1.15.0)
-    mustache (1.1.1)
     rake (13.0.6)
-    rdiscount (2.2.0.2)
-    redcarpet (3.5.1)
-    rocco (0.8.2)
-      mustache
-      redcarpet
     simplecov (0.16.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
@@ -66,8 +60,6 @@ DEPENDENCIES
   coveralls
   m!
   minitest (~> 4)
-  rdiscount
-  rocco
 
 BUNDLED WITH
-   2.2.26
+   2.3.26

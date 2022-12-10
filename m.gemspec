@@ -16,8 +16,6 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency "rake", ">= 0.9.2.2"
 
   gem.add_development_dependency "activesupport"
-  gem.add_development_dependency "rdiscount" unless defined? JRUBY_VERSION
-  gem.add_development_dependency "rocco" unless defined? JRUBY_VERSION
   gem.add_development_dependency "appraisal"
 
   gem.required_ruby_version = ">= 1.9"
