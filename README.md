@@ -1,6 +1,6 @@
 M.RB
 
-[![Gem Version](https://badge.fury.io/rb/m.svg)](https://rubygems.org/gems/m) [![Code Climate](https://codeclimate.com/github/qrush/m.svg)](https://codeclimate.com/github/qrush/m) [![Build Status](https://travis-ci.org/qrush/m.svg?branch=master)](https://travis-ci.org/qrush/m) [![Coverage Status](https://coveralls.io/repos/qrush/m/badge.svg?branch=master)](https://coveralls.io/r/qrush/m)
+[![Gem Version](https://badge.fury.io/rb/m.svg)](https://rubygems.org/gems/m) [![Code Climate](https://codeclimate.com/github/qrush/m.svg)](https://codeclimate.com/github/qrush/m) [![Build Status](https://github.com/qrush/m/actions/workflows/.github/workflows/ruby-ci.yml/badge.svg)](https://github.com/qrush/m/actions) [![Coverage Status](https://coveralls.io/repos/qrush/m/badge.svg?branch=master)](https://coveralls.io/r/qrush/m)
 
 
 ----
@@ -20,7 +20,7 @@ If you’re using Bundler, you’ll need to include it in your Gemfile. Toss it 
 
 ``` ruby
 group :test do
-  gem 'm', '~> 1.5.0'
+  gem  "m", "~> 1.6"
 end
 ```
 
@@ -30,11 +30,11 @@ Developing a RubyGem? Add m as a development dependency.
 ``` ruby
 Gem::Specification.new do |gem|
   # ...
-  gem.add_development_dependency "m", "~> 1.5.0"
+  gem.add_development_dependency "m", "~> 1.6"
 end
 ```
 
-m works on Ruby 2.0+ only and support is only provided for [versions currently maintained by the community](https://www.ruby-lang.org/en/downloads/branches/).
+m works on Ruby 2.7+ only and support is only provided for [versions currently maintained by the community](https://www.ruby-lang.org/en/downloads/branches/).
 
 
 USAGE
@@ -129,10 +129,11 @@ SUPPORT
 
 `m` works with a few Ruby test frameworks:
 
-  - Test::Unit
-  - ActiveSupport::TestCase
+  - Minitest::Test
+  - Minitest::Spec
   - MiniTest::Unit::TestCase
-  - Minitest
+  - ActiveSupport::TestCase
+  - Test::Unit
 
 
 CONTRIBUTING
