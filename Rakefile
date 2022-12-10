@@ -7,7 +7,7 @@ require "rake/clean"
 require "rake/testtask"
 require "standard/rake"
 
-task default: [:test, :standard]
+task default: [:test, "standard:fix"]
 
 Rake::TestTask.new do |t|
   t.libs << "test"
