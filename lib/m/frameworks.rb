@@ -1,7 +1,11 @@
 module M
   class Frameworks
     def self.minitest_version_major
-      defined?(Minitest) ? Minitest::Unit::VERSION.slice(/\d+/) : nil
+      if defined?(Minitest::Unit::VERSION)
+        Minitest::Unit::VERSION.slice(/\d+/)
+      elsif defined?(Minitest::VERSION)
+        Minitest::VERSION.slice(/\d+/)
+      end
     end
 
     def self.minitest5?
