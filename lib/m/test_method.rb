@@ -1,4 +1,4 @@
-require "method_source"
+require "method_source" if RUBY_VERSION < "4"
 
 module M
   ### Simple data structure for what a test method contains.
@@ -15,17 +15,17 @@ module M
       # look up the ruby Method instance for it
       method = suite_class.instance_method test_method
 
-      # Ruby can find the starting line for us, so pull that out of the array
-      start_line = method.source_location.last
+      # Ruby can find the starting line for us, so pull that out of the array.
+      # Ruby 4.0+ can also provide the ending line.
+      start_line, end_line  = method.source_location.values_at(1, 3)
 
-      # Ruby can't find the end line however, and I'm too lazy to write
+      # Ruby < 4.0 can't find the end line however, and I'm too lazy to write
       # a parser. Instead, `method_source` adds `Method#source` so we can
       # deduce this ourselves.
       #
       # The end line should be the number of line breaks in the method source,
       # added to the starting line and subtracted by one.
-
-      end_line = method.source.split("\n").size + start_line - 1
+      end_line ||= method.source.split("\n").size + start_line - 1
 
       # Shove the given attributes into a new databag
       new test_method, start_line, end_line
