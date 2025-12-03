@@ -1,8 +1,4 @@
 M.RB
-
-[![Gem Version](https://badge.fury.io/rb/m.svg)](https://rubygems.org/gems/m) [![Code Climate](https://codeclimate.com/github/qrush/m.svg)](https://codeclimate.com/github/qrush/m) [![Build Status](https://travis-ci.org/qrush/m.svg?branch=master)](https://travis-ci.org/qrush/m) [![Coverage Status](https://coveralls.io/repos/qrush/m/badge.svg?branch=master)](https://coveralls.io/r/qrush/m)
-
-
 ----
 
 `m` stands for metal, a better test/unit and minitest test runner that can run tests by line number.
@@ -116,11 +112,10 @@ SUPPORT
 
 `m` works with a few Ruby test frameworks:
 
+  - Minitest::Test
+  - Minitest::Spec
   - Test::Unit
   - ActiveSupport::TestCase
-  - MiniTest::Unit::TestCase
-  - Minitest
-
 
 CONTRIBUTING
 ============
