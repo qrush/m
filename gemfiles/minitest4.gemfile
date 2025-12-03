@@ -4,5 +4,7 @@ gem "allocation_stats"
 gem "benchmark-ips"
 gem "coveralls", require: false
 gem "minitest", "~> 4"
+gem "mutex_m" if RUBY_VERSION >= "3.3"
+gem "logger" if RUBY_VERSION >= "3.4"
 
 gemspec path: "../"
