@@ -10,11 +10,12 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
+        os:
+          - ubuntu-latest
         gemfile:
-          - minitest4
           - minitest5
           - test_unit_gem
         ruby:
@@ -25,16 +26,23 @@ jobs:
           - ruby-3.3
           - ruby-3.4
           - ruby-4.0
+          - jruby
           - truffleruby
+        include:
+          - { os: ubuntu-latest, gemfile: minitest4, ruby: ruby-2.7 }
+          - { os: ubuntu-latest, gemfile: minitest4, ruby: ruby-4.0 }
+          - { os: macos-latest, gemfile: minitest5, ruby: ruby-2.7 }
+          - { os: macos-latest, gemfile: minitest5, ruby: ruby-4.0 }
+    runs-on: ${{ matrix.os }}
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}.gemfile
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v6
       - name: Install
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
       - name: Test
-        run: bundle exec rake
+        run: bundle exec rake test
