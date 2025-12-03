@@ -73,7 +73,9 @@ module M
 
       begin
         # Fire up this Ruby file. Let's hope it actually has tests.
-        require "./#{testable.file}"
+        file = testable.file
+        file = "./#{testable.file}" unless file.start_with? "/"
+        require file
       rescue LoadError => e
         # Fail with a happier error message instead of spitting out a backtrace from this gem
         warn "Failed loading test file:\n#{e.message}"
