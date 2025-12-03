@@ -2,6 +2,11 @@ require "test_helper"
 
 if M::Frameworks.test_unit?
   class TestUnitTest < MTest
+    def test_run_simple_test_by_line_number_with_absolute_path
+      output = m File.join(__dir__, "examples/test_unit_example_test.rb:9")
+      assert_output(/1 tests, 1 assertions/, output)
+    end
+
     def test_run_simple_test_by_line_number
       output = m "examples/test_unit_example_test.rb:9"
       assert_output(/1 tests, 1 assertions/, output)

@@ -1,6 +1,11 @@
 require "test_helper"
 
 class ActiveSupportTest < MTest
+  def test_run_simple_test_by_line_number_with_absolute_path
+    output = m File.join(__dir__, "examples/active_support_example_test.rb:9")
+    assert_output(/1 (runs|tests), 1 assertions/, output)
+  end
+
   def test_run_simple_test_by_line_number
     output = m "examples/active_support_example_test.rb:9"
     assert_output(/1 (runs|tests), 1 assertions/, output)

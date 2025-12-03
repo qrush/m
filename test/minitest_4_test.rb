@@ -2,6 +2,11 @@ require "test_helper"
 
 if M::Frameworks.minitest4?
   class Minitest4Test < MTest
+    def test_run_simple_test_by_line_number_with_absolute_path
+      output = m File.join(__dir__, "examples/minitest_4_example_test.rb:19")
+      assert_output(/1 tests, 1 assertions/, output)
+    end
+
     def test_run_simple_test_by_line_number
       output = m "examples/minitest_4_example_test.rb:19"
       assert_output(/1 tests, 1 assertions/, output)
