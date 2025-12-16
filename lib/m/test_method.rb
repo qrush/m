@@ -1,4 +1,4 @@
-require_relative "finish_line"  if RUBY_VERSION < "4"
+require_relative "finish_line" # if RUBY_VERSION < "4.1"
 
 module M
   ### Simple data structure for what a test method contains.
@@ -13,12 +13,14 @@ module M
       method = suite_class.instance_method test_method
 
       # Ruby can find the starting line for us, so pull that out of the array.
-      # Ruby 4.0+ can also provide the ending line.
-      start_line, end_line = method.source_location.values_at(1, 3)
+      # Ruby 4.1+ can also provide the ending line.
+      #start_line, end_line = method.source_location.values_at(1, 3)
+      start_line = method.source_location[1]
 
-      # Ruby < 4.0 can't find the end line. Use a Ripper-derived parser to
+      # Ruby < 4.1 can't find the end line. Use a Ripper-derived parser to
       # determine the ending line.
-      end_line ||= FinishLine.ending_line_for method
+      #end_line ||= FinishLine.ending_line_for method
+      end_line = FinishLine.ending_line_for method
 
       # Shove the given attributes into a new databag
       new test_method, start_line, end_line
