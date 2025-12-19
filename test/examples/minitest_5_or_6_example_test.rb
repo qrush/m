@@ -1,6 +1,6 @@
 require "minitest/autorun"
 
-if M::Frameworks.minitest5?
+if M::Frameworks.minitest5? || M::Frameworks.minitest6?
   class Meme
     def i_can_has_cheezburger?
       "OHAI!"

@@ -16,6 +16,6 @@ end
 
 benchmark_allocations do
   10.times do
-    M::Runner.new(["test/examples/minitest_5_example_test.rb:19"]).run
+    M::Runner.new(["test/examples/minitest_5_or_6_example_test.rb:19"]).run
   end
 end

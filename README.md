@@ -130,9 +130,9 @@ You can also run tests selectively. For minitest 4 run:
 
     bundle exec rake test:minitest4
 
-and the ones for minitest 5 with:
+and the ones for minitest 5 or 6 with:
 
-    bundle exec rake test:minitest5
+    bundle exec rake test:minitest
 
 
 LICENSE
