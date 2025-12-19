@@ -1,4 +1,4 @@
-require "test_helper"
+require_relative "test_helper"
 
 class EverythingTest < MTest
   def test_runs_entire_test_suite_with_no_arguments
