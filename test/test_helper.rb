@@ -24,7 +24,7 @@ module Testable
   end
 end
 
-require "m"
+require_relative "../lib/m"
 
 def try_loading gem
   require gem

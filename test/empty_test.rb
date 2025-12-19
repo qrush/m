@@ -1,4 +1,4 @@
-require "test_helper"
+require_relative "test_helper"
 
 class EmptyTest < MTest
   def test_run_simple_test_by_line_number

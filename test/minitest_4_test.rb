@@ -1,4 +1,4 @@
-require "test_helper"
+require_relative "test_helper"
 
 if M::Frameworks.minitest4?
   class Minitest4Test < MTest

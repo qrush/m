@@ -1,4 +1,5 @@
-require "test_helper"
+require_relative "test_helper"
+
 if M::Frameworks.minitest5? || M::Frameworks.minitest6?
   class MinitestTest < MTest
     def test_run_simple_test_by_line_number_with_absolute_path

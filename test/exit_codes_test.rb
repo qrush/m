@@ -1,4 +1,4 @@
-require "test_helper"
+require_relative "test_helper"
 
 class ExitCodesTest < MTest
   def test_failing_test_returns_1
