@@ -1,4 +1,4 @@
-require "minitest/unit"
+require "minitest"
 
 class Meme
   def i_can_has_cheezburger?
