@@ -1,5 +1,4 @@
-$LOAD_PATH.unshift "lib"
-require "m"
+require_relative "../lib/m"
 require "allocation_stats"
 
 def benchmark_allocations burn: 1, &block
