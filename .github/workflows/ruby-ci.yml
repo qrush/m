@@ -15,9 +15,6 @@ jobs:
       matrix:
         os:
           - ubuntu-latest
-        gemfile:
-          - minitest
-          - test_unit_gem
         ruby:
           - ruby-2.7
           - ruby-3.0
@@ -29,13 +26,9 @@ jobs:
           - jruby
           - truffleruby
         include:
-          - { os: ubuntu-latest, gemfile: minitest4, ruby: ruby-2.7 }
-          - { os: ubuntu-latest, gemfile: minitest4, ruby: ruby-4.0 }
-          - { os: macos-latest, gemfile: minitest, ruby: ruby-2.7 }
-          - { os: macos-latest, gemfile: minitest, ruby: ruby-4.0 }
+          - { os: macos-latest, ruby: ruby-2.7 }
+          - { os: macos-latest, ruby: ruby-4.0 }
     runs-on: ${{ matrix.os }}
-    env:
-      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}.gemfile
     steps:
       - name: Checkout
         uses: actions/checkout@v6
