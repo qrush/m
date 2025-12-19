@@ -8,6 +8,10 @@ module M
       end
     end
 
+    def self.minitest6?
+      minitest_version_major == "6"
+    end
+
     def self.minitest5?
       minitest_version_major == "5"
     end
@@ -25,7 +29,9 @@ module M
     end
 
     def framework_runner
-      if minitest5?
+      if minitest6?
+        Runners::Minitest6.new
+      elsif minitest5?
         Runners::Minitest5.new
       elsif minitest4?
         Runners::Minitest4.new
@@ -37,6 +43,10 @@ module M
     end
 
     private
+
+    def minitest6?
+      self.class.minitest6?
+    end
 
     def minitest5?
       self.class.minitest5?
