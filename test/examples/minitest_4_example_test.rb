@@ -1,6 +1,6 @@
-require "minitest/unit"
-
 if M::Frameworks.minitest4?
+  require "minitest/unit"
+
   class Meme
     def i_can_has_cheezburger?
       "OHAI!"
