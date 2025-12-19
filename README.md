@@ -124,16 +124,7 @@ CONTRIBUTING
 
 You can run all the tests with:
 
-    bundle exec rake tests
-
-You can also run tests selectively. For minitest 4 run:
-
-    bundle exec rake test:minitest4
-
-and the ones for minitest 5 or 6 with:
-
-    bundle exec rake test:minitest
-
+    bundle exec rake test
 
 LICENSE
 =======
