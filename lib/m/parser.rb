@@ -1,4 +1,5 @@
 require_relative "testable"
+require "rbconfig"
 
 module M
   class Parser
@@ -11,12 +12,12 @@ module M
       # With no arguments,
       if argv.empty?
         # Just shell out to `rake test`.
-        exec "rake test"
+        exec "#{RbConfig.ruby} -S rake test"
       else
         parse_options! argv
 
         if argv.first.start_with? "--"
-          exec "rake test #{argv.join}"
+          exec "#{RbConfig.ruby} -S rake test #{argv.join}"
           exit 0
         else
           # Parse out ARGV, it should be coming in in a format like `test/test_file.rb:9:19`
