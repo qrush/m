@@ -6,6 +6,7 @@ require "bundler/gem_tasks"
 require "rake/clean"
 require "rake/testtask"
 require "standard/rake"
+require "rbconfig"
 
 task default: [:test, "standard:fix"]
 
@@ -24,7 +25,7 @@ namespace :test do
       gemfile_name = rake_task.name.split(":").last
       gemfile_path = "gemfiles/#{gemfile_name}.gemfile"
       Bundler.with_original_env do
-        sh "BUNDLE_GEMFILE=#{gemfile_path} bundle exec rake"
+        sh "BUNDLE_GEMFILE=#{gemfile_path} bundle exec #{RbConfig.ruby} -S rake"
       end
     end
   end
@@ -34,7 +35,7 @@ desc "Run all tests and get merged test coverage"
 task :tests do
   Dir.glob("gemfiles/*.gemfile").each do |gemfile_path|
     Bundler.with_original_env do
-      sh "BUNDLE_GEMFILE=#{gemfile_path} bundle exec rake"
+      sh "BUNDLE_GEMFILE=#{gemfile_path} bundle exec #{RbConfig.ruby} -S rake"
     end
   end
   Coveralls.push!
@@ -44,5 +45,5 @@ desc "Run simple benchmarks"
 task :bench do
   current_commit = `git rev-parse HEAD`
   file_name = "benchmarks/#{Time.now.strftime "%Y%m%d"}-benchmark.log"
-  exec "echo -e 'Data for commit: #{current_commit}' > #{file_name} && ruby test/bench.rb >> #{file_name}"
+  exec "echo -e 'Data for commit: #{current_commit}' > #{file_name} && #{RbConfig.ruby} test/bench.rb >> #{file_name}"
 end
