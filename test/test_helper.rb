@@ -32,8 +32,7 @@ rescue LoadError
   false
 end
 
-try_loading("test-unit") ||
-  try_loading("minitest/autorun") ||
+try_loading("minitest/autorun") ||
   try_loading("test/unit")
 
 if M::Frameworks.test_unit?

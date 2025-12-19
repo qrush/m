@@ -10,9 +10,9 @@ class Meme
   end
 end
 
-Test = M::Frameworks.minitest4? ? MiniTest::Unit::TestCase : Minitest::Test
+TestClass = M::Frameworks.minitest4? ? MiniTest::Unit::TestCase : Minitest::Test
 
-class TestMeme < Test
+class TestMeme < TestClass
   def setup
     @meme = Meme.new
   end
