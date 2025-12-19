@@ -16,10 +16,6 @@ module M
       minitest_version_major == "5"
     end
 
-    def self.minitest4?
-      minitest_version_major == "4"
-    end
-
     def self.test_unit?
       defined?(Test::Unit)
     end
@@ -33,8 +29,6 @@ module M
         Runners::Minitest6.new
       elsif minitest5?
         Runners::Minitest5.new
-      elsif minitest4?
-        Runners::Minitest4.new
       elsif test_unit?
         Runners::TestUnit.new
       else
@@ -50,10 +44,6 @@ module M
 
     def minitest5?
       self.class.minitest5?
-    end
-
-    def minitest4?
-      self.class.minitest4?
     end
 
     def test_unit?
