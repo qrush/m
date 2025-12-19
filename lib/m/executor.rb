@@ -1,4 +1,5 @@
 require_relative "runners/base"
+require_relative "runners/minitest_6"
 require_relative "runners/minitest_5"
 require_relative "runners/minitest_4"
 require_relative "runners/test_unit"
