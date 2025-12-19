@@ -14,8 +14,8 @@ Benchmark.ips do |bench|
     `BUNDLE_GEMFILE=gemfiles/minitest4.gemfile bundle exec #{RbConfig.ruby} -Ilib ./bin/m test/examples/minitest_4_example_test.rb 2>/dev/null`
   end
 
-  bench.report("running m on an entire file with minitest5") do
-    `BUNDLE_GEMFILE=gemfiles/minitest5.gemfile bundle exec #{RbConfig.ruby} -Ilib ./bin/m test/examples/minitest_5_example_test.rb 2>/dev/null`
+  bench.report("running m on an entire file with minitest") do
+    `BUNDLE_GEMFILE=gemfiles/minitest.gemfile bundle exec #{RbConfig.ruby} -Ilib ./bin/m test/examples/minitest_5_or_6_example_test.rb 2>/dev/null`
   end
 
   bench.report("running m on an entire file with test-unit gem") do
@@ -26,8 +26,8 @@ Benchmark.ips do |bench|
     `BUNDLE_GEMFILE=gemfiles/minitest4.gemfile bundle exec #{RbConfig.ruby} -Ilib ./bin/m test/examples/minitest_4_example_test.rb:19 2>/dev/null`
   end
 
-  bench.report("running m on a specific test with minitest5") do
-    `BUNDLE_GEMFILE=gemfiles/minitest5.gemfile bundle exec #{RbConfig.ruby} -Ilib ./bin/m test/examples/minitest_5_example_test.rb:19 2>/dev/null`
+  bench.report("running m on a specific test with minitest") do
+    `BUNDLE_GEMFILE=gemfiles/minitest.gemfile bundle exec #{RbConfig.ruby} -Ilib ./bin/m test/examples/minitest_5_or_6_example_test.rb:19 2>/dev/null`
   end
 
   bench.report("running m on a specific test with test-unit gem") do

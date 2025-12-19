@@ -46,7 +46,7 @@ if M::Frameworks.test_unit?
   class MTest < Test::Unit::TestCase
     include ::Testable
   end
-elsif M::Frameworks.minitest5?
+elsif M::Frameworks.minitest5? || M::Frameworks.minitest6?
   class MTest < Minitest::Test
     include ::Testable
   end
